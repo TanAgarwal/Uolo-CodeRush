@@ -3,15 +3,24 @@ import {useContext, useEffect, useState} from 'react';
 import PawnContext from './store/pawn-context';
 import Col from "./components/Col";
 import AppControllerFunctions from './controller/app-controller';
-import Question from './components/Question';
+import AskQuestionContext from './store/ask-question';
+import DiceContext from './store/dice';
 
 let questionBag = [];
-let numberOfQuestions = [];
 function App () {
   const pawnCtx = useContext(PawnContext);
-  const [askQuestion, setAskQuestion] = useState(0);
-  const [showDice, setShowDice] = useState(false);
-  
+  const askQuestionCtx = useContext(AskQuestionContext);
+  const diceCtx = useContext(DiceContext);
+  const [showDice, setShowDice] = useState(true);
+  const diceArray = [
+    './static/images/dice/1.jpg', 
+    './static/images/dice/2.jpg',
+    './static/images/dice/3.jpg', 
+    './static/images/dice/4.jpg', 
+    './static/images/dice/5.jpg',
+    './static/images/dice/6.jpg'
+  ];
+
   useEffect(() => {
     pawnCtx.setNewPawnPosition(pawnCtx.index);
     fetch('https://opentdb.com/api.php?amount=10&category=19&difficulty=medium&type=multiple')
@@ -29,33 +38,24 @@ function App () {
         })
         setShowDice(true);
   }, []);
-  
-  const askQuestionHandler = () => {
-    return (
-      <Question 
-        question = {questionBag[askQuestion - 1].question} 
-        options = {questionBag[askQuestion - 1].options} 
-        answer = {questionBag[askQuestion - 1].answer} 
-        numberOfQuestion = {numberOfQuestions}
-        questionNumber = {askQuestion}
-        setAskQuestionCallBack = {setAskQuestion}
-        />
-    )
-  }
-
-  const rollDice = () => {
-    numberOfQuestions = AppControllerFunctions.rollDice();
-    setAskQuestion(numberOfQuestions);
-    setShowDice(false);
-  }
 
   return (
     <div className="App">
       <header id = "header" className="App-header">
-        <Col />
+        <div className = 'dice-n-grid'>
         {showDice ? 
-        <button onClick = {() => rollDice()}>ROLL DICE</button> : null}
-        {askQuestion != 0 ? askQuestionHandler() : null}
+          <input type = 'image' src = {`url(${diceArray[diceCtx.number - 1]})`} 
+          onClick = {() => AppControllerFunctions.rollDice(
+            (val) => askQuestionCtx.askNewQuestion(val), 
+            (val) => setShowDice(val),
+            (val) => diceCtx.setNewDiceNumber(val))} />: 
+            <button> <img src = {`"url(${diceArray[diceCtx.number - 1]})"`} /> </button>}
+          <Col />
+        </div>
+        {askQuestionCtx.question != 0 ? AppControllerFunctions.askQuestionHandler(
+          questionBag, 
+          askQuestionCtx.question,
+          (val) => setShowDice(val)) : null}
       </header>
     </div>
   );

@@ -13,6 +13,18 @@
   }
 }
 
+.dice-n-grid {
+  display: flex;
+  flex-direction: row;
+}
+
+.grid {
+  background-image: url('./static/images/grid1.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 110px;
+}
+
 .App-header {
   min-height: 100vh;
   display: flex;
@@ -24,11 +36,11 @@
 }
 
 .pawn {
-  height: 25px;
-  width: 25px;
-  background-color: red;
-  border-radius: 50%;
-  display: inline-block;
+  background-image: url('./static/images/pawn.png');
+  height: 40px;
+  width: 40px;
+  margin-left: 15px;
+  margin-top: 10px;
 }
 
 .App-link {
