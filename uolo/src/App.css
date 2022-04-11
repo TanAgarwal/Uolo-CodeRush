@@ -31,7 +31,6 @@
 
 .pawn {
   background-image: url('../public/images/pawn.png');
-  z-index: 9;
   height: 40px;
   width: 40px;
   margin-left: 15px;

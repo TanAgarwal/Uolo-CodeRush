@@ -7,7 +7,7 @@ const Timer = ({setNextQuestion, question}) => {
     useEffect(() => {
         if(timer === 0)
         {
-            commonFunctions.playTimeUpSound();
+            //commonFunctions.playTimeUpSound();
             return setNextQuestion(true);
         }
         const interval = setInterval(()=>{
