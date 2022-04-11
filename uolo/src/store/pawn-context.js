@@ -10,9 +10,9 @@ export const PawnContextProvider = props => {
     
     const setNewPawnPosition = (index) => {
         let pawnDiv = document.getElementById(pawnPosition);
-        pawnDiv.innerHTML = "";
+        pawnDiv.innerHTML = `<div id = ${pawnPosition} className = 'cell' > ${pawnPosition} </div>`;
         pawnDiv = document.getElementById(index);
-        pawnDiv.innerHTML += "<div id = 'pawn' class = 'pawn' />";
+        pawnDiv.innerHTML = `<div id = ${index} class = 'pawn' />`;
         setPawnPosition(index);
     }
     
