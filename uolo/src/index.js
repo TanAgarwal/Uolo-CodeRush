@@ -1,16 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {PawnContextProvider} from './store/pawn-context.js';
+import {PawnContextProvider} from './store/pawn-context';
+import {AskQuestionContextProvider} from './store/ask-question';
+import {DiceContextProvider} from './store/dice';
 
 ReactDOM.render(
-  <PawnContextProvider>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-  </PawnContextProvider>
+  <DiceContextProvider>
+    <PawnContextProvider>
+      <AskQuestionContextProvider>
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+      </AskQuestionContextProvider>    
+    </PawnContextProvider>
+  </DiceContextProvider>
   ,
   document.getElementById('root')
 );
