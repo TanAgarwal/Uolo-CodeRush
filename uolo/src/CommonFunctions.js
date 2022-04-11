@@ -18,6 +18,9 @@ const commonFunctions = {
 
     playDiceThrowSound : () => {
         SoundPlay('/audio/dice-throw.mp3');
+    },
+    playTimeUpSound : () => {
+        SoundPlay('/audio/time-up.mp3');
     }
 }
 
