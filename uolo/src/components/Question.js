@@ -1,8 +1,11 @@
-import './Component.css'
+import './question.css'
 import AskQuestionContext from '../store/ask-question';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import PawnContext from '../store/pawn-context';
 import commonFunctions from '../CommonFunctions';
+import { useSpeechSynthesis } from 'react-speech-kit';
+import TextToSpeech from './TextToSpeech';
+import Timer from './Timer';
 
 let correctAnswer = 0;
 const Question = ({question, options, answer, numberOfQuestion, setDiceCallback}) => {
@@ -11,50 +14,65 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback}
     options.sort();
     const askQuestionCtx = useContext(AskQuestionContext);
     const pawnCtx = useContext(PawnContext);
-    // const [timeElapsed, setTimeElapsed] = useState(5000);
+    const [styleButton, setStyleButton] = useState(null);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [nextQuestion, setNextQuestion] = useState(false);
+    const {speak} = useSpeechSynthesis();
+
+    // useEffect(() => {
+    //     console.log('called for ques: ' + question);
+    //     speak({text:question})
+    //   }, [question]);
+
+    useEffect(() => {
+        if(nextQuestion){
+            console.log('called');
+            setTimeout(()=>{
+                if (askQuestionCtx.question - 1 == 0) {
+                    if (pawnCtx.index + correctAnswer <= 100) {
+                        pawnCtx.setNewPawnPosition(pawnCtx.index + correctAnswer);
+                        correctAnswer = 0;
+                        // TODO: check for wormholes
+                    } else {
+                        // TODO: Show Message that you can't move these many turns
+                    }
+                }
+                askQuestionCtx.askNewQuestion(askQuestionCtx.question - 1);
+            },2000);
+        setNextQuestion(false);
+    }
+    }, [nextQuestion]);
 
     const answerClick = (selectedOption) => {
+        setSelectedAnswer(selectedOption);
         if (selectedOption === answer) {
-            commonFunctions.playCorrectAnswerSound();
-            correctAnswer++;
+           commonFunctions.playCorrectAnswerSound();
+           setStyleButton('game-button green');
+           correctAnswer += 1;
+           setNextQuestion(true);
         } else {
             commonFunctions.playWrongAnswerSound();
+            setStyleButton('game-button red');
+            setNextQuestion(true);
         }
-        if (askQuestionCtx.question - 1 == 0) {
-            if (pawnCtx.index + correctAnswer <= 100) {
-                pawnCtx.setNewPawnPosition(pawnCtx.index + correctAnswer);
-                // TODO: check for wormholes
-            } else {
-                // TODO: Show Message that you can't move these many turns
-            }
-            correctAnswer = 0;
-            setDiceCallback(true);
-        }
-        // setTimeElapsed(5000);
-        askQuestionCtx.askNewQuestion(askQuestionCtx.question - 1);
     }
-    // console.log(timeElapsed);
-    // if (timeElapsed >= 0) {
-    //     setInterval(() => {
-    //         setTimeElapsed(timeElapsed - 1000);
-    //     }, 1000);
-    // }
 
     return (
         <div className='app'>
-            {/* <div className='timer-text'>{timeElapsed / 1000}</div> */}
             <div className='question-section'>
                 <div className='question-count'>
                     <span>Question {askQuestionCtx.question}</span>/{numberOfQuestion}
                 </div>
+                <div className='timer'> <Timer setNextQuestion={setNextQuestion} question={question} /> </div>
+            <TextToSpeech question={question}/>
                 <div className='question-text'>{question}</div>
             </div>
-            
             <div className='answer-section'>
                 {options.map((answerOption, index) => (
-                    <button onClick = {() => answerClick(answerOption)}>{answerOption}</button>
+                    <button key={index} className={selectedAnswer === answerOption ? styleButton : 'game-button'} onClick = {() => answerClick(answerOption)}>{answerOption}</button>
                 ))}
             </div>
+            {/* <div>{handleSpeech(question)}</div> */}
         </div>
     )
 }
