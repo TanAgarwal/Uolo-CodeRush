@@ -1,9 +1,5 @@
 import './Component.css';
 
-const Cell = ({index}) => {
-    return (
-        <div id = {index} className = 'cell' />
-    )
-}
+const Cell = ({index}) => <div id = {index} className = 'cell' > {index} </div>
 
 export default Cell;

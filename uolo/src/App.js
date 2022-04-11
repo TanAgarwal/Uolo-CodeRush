@@ -7,19 +7,20 @@ import AskQuestionContext from './store/ask-question';
 import DiceContext from './store/dice';
 
 let questionBag = [];
+const diceArray = [
+  '/images/dice/1.jpg', 
+  '/images/dice/2.jpg',
+  '/images/dice/3.jpg', 
+  '/images/dice/4.jpg', 
+  '/images/dice/5.jpg',
+  '/images/dice/6.jpg'
+];
+
 function App () {
   const pawnCtx = useContext(PawnContext);
   const askQuestionCtx = useContext(AskQuestionContext);
   const diceCtx = useContext(DiceContext);
   const [showDice, setShowDice] = useState(true);
-  const diceArray = [
-    './static/images/dice/1.jpg', 
-    './static/images/dice/2.jpg',
-    './static/images/dice/3.jpg', 
-    './static/images/dice/4.jpg', 
-    './static/images/dice/5.jpg',
-    './static/images/dice/6.jpg'
-  ];
 
   useEffect(() => {
     pawnCtx.setNewPawnPosition(pawnCtx.index);
@@ -39,25 +40,46 @@ function App () {
         setShowDice(true);
   }, []);
 
-  return (
-    <div className="App">
-      <header id = "header" className="App-header">
-        <div className = 'dice-n-grid'>
-        {showDice ? 
-          <input type = 'image' src = {`url(${diceArray[diceCtx.number - 1]})`} 
+  /**************** UI RENDERING FUNCTIONS ****************/
+
+  const renderDice = () => {
+    if (showDice) {
+      return (
+        <input className = 'dice' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} 
           onClick = {() => AppControllerFunctions.rollDice(
             (val) => askQuestionCtx.askNewQuestion(val), 
             (val) => setShowDice(val),
-            (val) => diceCtx.setNewDiceNumber(val))} />: 
-            <button> <img src = {`"url(${diceArray[diceCtx.number - 1]})"`} /> </button>}
-          <Col />
-        </div>
-        {askQuestionCtx.question != 0 ? AppControllerFunctions.askQuestionHandler(
+            (val) => diceCtx.setNewDiceNumber(val))} />
+      );
+    }
+    return <input className = 'dice' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} />;
+  }
+
+  const renderGrid = () => {
+    return <div className='grid'> <Col /> </div>;
+  }
+
+  const renderQuestion = () => {
+    if (askQuestionCtx.question != 0) {
+      return (
+        AppControllerFunctions.askQuestionHandler(
           questionBag, 
           askQuestionCtx.question,
-          (val) => setShowDice(val)) : null}
+          (val) => setShowDice(val))
+      );
+    }
+  }
+
+  /**************** MAIN RETURN FUNCTION ****************/
+  return (
+      <header id = "header" className="App-header">
+        <div className='swingimage'>GK 'n' LUCK</div>
+        <div className = 'dice-n-grid'>
+          {renderDice()}
+          {renderGrid()}
+        </div>
+          {renderQuestion()}
       </header>
-    </div>
   );
 }
 

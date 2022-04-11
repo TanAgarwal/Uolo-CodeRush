@@ -1,6 +1,4 @@
 import {Howl, Howler} from 'howler';
-import correctAnswerSound from './static/audio/correct-answer.mp3'
-import wrongAnswerSound from './static/audio/wrong-answer.mp3'
 
 const SoundPlay = src => {
     const sound = new Howl({src});
@@ -11,11 +9,15 @@ Howler.volume(1.0);
 
 const commonFunctions = {
     playCorrectAnswerSound : () => {
-        SoundPlay(correctAnswerSound);
+        SoundPlay('/audio/correct-answer.mp3');
     },
     
     playWrongAnswerSound : () => {
-        SoundPlay(wrongAnswerSound);
+        SoundPlay('/audio/wrong-answer.mp3');
+    },
+
+    playDiceThrowSound : () => {
+        SoundPlay('/audio/dice-throw.mp3');
     }
 }
 

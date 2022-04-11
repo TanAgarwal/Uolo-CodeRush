@@ -1,28 +1,13 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .dice-n-grid {
   display: flex;
   flex-direction: row;
 }
 
 .grid {
-  background-image: url('./static/images/grid1.jpeg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 110px;
+  /* background-image: url('../public/images/grid1.jpeg'); */
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+  padding: 10px;
 }
 
 .App-header {
@@ -30,13 +15,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
+.dice {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  align-items:center;
+  margin: auto;
+  justify-content:center;
+}
+
 .pawn {
-  background-image: url('./static/images/pawn.png');
+  background-image: url('../public/images/pawn.png');
+  z-index: 9;
   height: 40px;
   width: 40px;
   margin-left: 15px;
@@ -54,4 +49,45 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* SWING IMAGE */
+
+@-webkit-keyframes swinging{
+  0%{-webkit-transform: rotate(2deg);}
+  50%{-webkit-transform: rotate(-2deg)}
+  100%{-webkit-transform: rotate(2deg);}
+}
+
+@keyframes swinging{
+  0%{transform: rotate(2deg);}
+  50%{transform: rotate(-2deg)}
+  100%{transform: rotate(2deg);}
+}
+
+.swingimage{
+    margin-top: 0px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-family: 'Rubik Moonrocks', cursive;
+    font-size: 3rem;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: -4px 4px #ef3550,
+                 -8px 8px #f48fb1,
+                 -12px 12px #7e57c2,
+                 -16px 16px #2196f3,
+                 -20px 20px #26c6da,
+                 -24px 24px #43a047,
+                 -28px 28px #eeff41,
+                 -32px 32px #f9a825,
+                 -36px 36px #ff5722;
+  font-size: 80px;
+  margin-bottom: 50px;
+  margin-top: 15px;
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-animation: swinging 3.5s ease-in-out forwards infinite;
+  animation: swinging 3.5s ease-in-out forwards infinite;
 }

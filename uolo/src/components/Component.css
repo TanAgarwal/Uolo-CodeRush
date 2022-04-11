@@ -1,8 +1,14 @@
 .cell {
+    display: flex;
     width: 90px;
     height: 70px;
-    border: 1px solid white;
+    border: 3px solid brown;
     border-radius: 5px;
+    color: red;
+    margin: auto;
+    align-items:center;
+    justify-content:center;
+    font-family: 'Bangers', cursive;
   }
 
 .row {

@@ -4,30 +4,31 @@ import { useContext, useState } from 'react';
 import PawnContext from '../store/pawn-context';
 import commonFunctions from '../CommonFunctions';
 
-const Question = ({question, options, answer, numberOfQuestion}) => {
+let correctAnswer = 0;
+const Question = ({question, options, answer, numberOfQuestion, setDiceCallback}) => {
     options = options.slice(0, 3);
     options.push(answer);
     options.sort();
     const askQuestionCtx = useContext(AskQuestionContext);
     const pawnCtx = useContext(PawnContext);
-    const [correctAnswer, setCorrectAnswer] = useState(0);
     // const [timeElapsed, setTimeElapsed] = useState(5000);
 
     const answerClick = (selectedOption) => {
         if (selectedOption === answer) {
             commonFunctions.playCorrectAnswerSound();
-            setCorrectAnswer(correctAnswer + 1);
+            correctAnswer++;
         } else {
             commonFunctions.playWrongAnswerSound();
         }
         if (askQuestionCtx.question - 1 == 0) {
             if (pawnCtx.index + correctAnswer <= 100) {
                 pawnCtx.setNewPawnPosition(pawnCtx.index + correctAnswer);
-                setCorrectAnswer(0);
                 // TODO: check for wormholes
             } else {
                 // TODO: Show Message that you can't move these many turns
             }
+            correctAnswer = 0;
+            setDiceCallback(true);
         }
         // setTimeElapsed(5000);
         askQuestionCtx.askNewQuestion(askQuestionCtx.question - 1);
