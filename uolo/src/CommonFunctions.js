@@ -34,6 +34,10 @@ const commonFunctions = {
 
     playBadWormholeSound : () => {
         SoundPlay('/audio/bad-wormhole.mp3')
+    },
+    
+    playAudioToggleSound : () => {
+        SoundPlay('/audio/Mouse_Click_Sound_Effect.mp3');
     }
 }
 

@@ -5,6 +5,7 @@ import Col from "./components/Col";
 import AppControllerFunctions from './controller/app-controller';
 import AskQuestionContext from './store/ask-question';
 import DiceContext from './store/dice';
+import commonFunctions from './CommonFunctions';
 
 let questionBag = [];
 const diceArray = [
@@ -30,10 +31,11 @@ function App () {
   const askQuestionCtx = useContext(AskQuestionContext);
   const diceCtx = useContext(DiceContext);
   const [showDice, setShowDice] = useState(true);
+  const [audioOn, setAudioOn] = useState(true);
 
-  useEffect(async () => {
+  useEffect(() => {
     pawnCtx.setNewPawnPosition(pawnCtx.index);
-    await fetch('https://opentdb.com/api.php?amount=50&category=9&difficulty=easy&type=multiple')
+    fetch('https://opentdb.com/api.php?amount=50&category=9&difficulty=easy&type=multiple')
         .then(response => response.json())
         .then(data => {
           const questionArray = data.results.map(function(question) {
@@ -59,7 +61,8 @@ function App () {
           onClick = {() => AppControllerFunctions.rollDice(
             (val) => askQuestionCtx.askNewQuestion(val), 
             (val) => setShowDice(val),
-            (val) => diceCtx.setNewDiceNumber(val))} />
+            (val) => diceCtx.setNewDiceNumber(val),
+            audioOn)} />
         )
       }
       return (
@@ -67,7 +70,8 @@ function App () {
           onClick = {() => AppControllerFunctions.rollDice(
             (val) => askQuestionCtx.askNewQuestion(val), 
             (val) => setShowDice(val),
-            (val) => diceCtx.setNewDiceNumber(val))} />
+            (val) => diceCtx.setNewDiceNumber(val),
+            audioOn)} />
       );
     }
     return <input className = 'dice' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} />;
@@ -84,9 +88,16 @@ function App () {
           questionBag, 
           askQuestionCtx.question,
           (val) => setShowDice(val),
-          wormholes)
+          audioOn,
+          wormholes
+          )
       );
     }
+  }
+
+  const toggleAudio = () =>{
+    commonFunctions.playAudioToggleSound();
+    audioOn ? setAudioOn(false) : setAudioOn(true)
   }
 
   /**************** MAIN RETURN FUNCTION ****************/
@@ -95,11 +106,13 @@ function App () {
         <div className='swingimage'>
           <div className='rainbowText'>GK</div> <div>{renderDice()}</div><div className='rainbowText'> LUCK</div>
         </div>
-        <div className = 'dice-n-grid'>
-          
-          {renderGrid()}
+        <div className='mic' onClick={toggleAudio}>
+          { audioOn ? <img src='/images/speaker.png'/> : <img src='/images/mute.png'/>}
         </div>
+        <div className = 'dice-n-grid'> 
+          {renderGrid()}
           {renderQuestion()}
+        </div>
       </header>
   );
 }
