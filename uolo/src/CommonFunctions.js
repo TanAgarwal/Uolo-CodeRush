@@ -19,8 +19,21 @@ const commonFunctions = {
     playDiceThrowSound : () => {
         SoundPlay('/audio/dice-throw.mp3');
     },
+
     playTimeUpSound : () => {
         SoundPlay('/audio/time-up.mp3');
+    },
+
+    playPawnMoveSound : () => {
+        SoundPlay('/audio/pawn-move.mp3');
+    },
+
+    playGoodWormholeSound : () => {
+        SoundPlay('/audio/good-wormhole.mp3');
+    },
+
+    playBadWormholeSound : () => {
+        SoundPlay('/audio/bad-wormhole.mp3')
     }
 }
 

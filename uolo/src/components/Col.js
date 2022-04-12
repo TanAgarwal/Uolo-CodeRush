@@ -1,16 +1,16 @@
 import Row from "./Row";
 
-const createCol = (i, isOdd) => {
+const createCol = (i, isOdd, wormholes) => {
     return (
-        <Row index = {i} isOdd = {isOdd} />
+        <Row index = {i} isOdd = {isOdd} wormholes = {wormholes} />
     )
 }
 
-const Col = () => {
+const Col = ({wormholes}) => {
     let colArray = [];
     let isOdd = true;
     for (let i = 1; i <= 100; i += 10) {
-        colArray.push(createCol(i, isOdd));
+        colArray.push(createCol(i, isOdd, wormholes));
         isOdd = !isOdd;
     }
     return (
