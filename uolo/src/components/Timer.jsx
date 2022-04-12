@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import commonFunctions from '../CommonFunctions';
 
-const Timer = ({setNextQuestion, question}) => {
+const Timer = ({setNextQuestion, question, audioOn}) => {
     const [timer, setTimer] = useState(10);
 
     useEffect(() => {
         if(timer === 0)
         {
-            //commonFunctions.playTimeUpSound();
+            if(audioOn){
+            commonFunctions.playTimeUpSound();
+            }
             return setNextQuestion(true);
         }
         const interval = setInterval(()=>{

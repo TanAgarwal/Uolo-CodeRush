@@ -152,3 +152,10 @@
   }
   
 }
+.mic{
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  right: 10%;
+  top: 5%;
+}
