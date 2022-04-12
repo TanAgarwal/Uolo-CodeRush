@@ -26,6 +26,8 @@
   border-radius: 20px;
   align-items:center;
   margin: auto;
+  margin-top: 12px;
+  margin-right: 35px;
   justify-content:center;
 }
 
@@ -65,10 +67,21 @@
 }
 
 .swingimage{
-    margin-top: 0px;
-    margin-bottom: 50px;
-    text-align: center;
-    font-family: 'Rubik Moonrocks', cursive;
+  display: flex;
+  flex-direction: row;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 15px;
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-animation: swinging 3.5s ease-in-out forwards infinite;
+  animation: swinging 3.5s ease-in-out forwards infinite;
+}
+
+.rainbowText {
+  font-family: 'Rubik Moonrocks', cursive;
     font-size: 3rem;
     letter-spacing: 0.15rem;
     text-transform: uppercase;
@@ -83,10 +96,59 @@
                  -32px 32px #f9a825,
                  -36px 36px #ff5722;
   font-size: 80px;
-  margin-bottom: 50px;
-  margin-top: 15px;
-  -webkit-transform-origin: 50% 0;
-  transform-origin: 50% 0;
-  -webkit-animation: swinging 3.5s ease-in-out forwards infinite;
-  animation: swinging 3.5s ease-in-out forwards infinite;
+}
+
+.dice-with-letter-n {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  align-items:center;
+  margin: auto;
+  margin-top: 12px;
+  margin-right: 35px;
+  justify-content:center;
+  animation: shake 1s both infinite;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%{
+    transform: translate3d(-0.5px, 0, 0);
+  }
+
+  15% {
+    transform: translate3d(1px, 0, 0);
+  }
+  
+  20% {
+    transform: translate3d(-2px, 0, 0);
+  }
+
+  25% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 35%, 40%, 45%, 50%, 55%, 60%, 65%, 70% {
+    transform: translate3d(0px, 0, 0);
+  }
+
+  75% {
+    transform: translate3d(-0.5px, 0, 0);
+  }
+
+  80% {
+    transform: translate3d(1px, 0, 0);
+  }
+
+  85% {
+    transform: translate3d(-2px, 0, 0);
+  }
+
+  90% {
+    transform: translate3d(4px, 0, 0);
+  }
+  
 }

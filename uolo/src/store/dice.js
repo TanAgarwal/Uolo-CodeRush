@@ -6,7 +6,7 @@ const DiceContext = createContext({
 }); 
 
 export const DiceContextProvider = props => {
-    const [diceNumber, setDiceNumber] = useState(1);
+    const [diceNumber, setDiceNumber] = useState(7);
     
     const setNewDiceNumber = (diceNumber) => {
         setDiceNumber(diceNumber);

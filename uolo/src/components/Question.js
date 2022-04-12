@@ -8,7 +8,7 @@ import TextToSpeech from './TextToSpeech';
 import Timer from './Timer';
 
 let correctAnswer = 0;
-const Question = ({question, options, answer, numberOfQuestion, setDiceCallback}) => {
+const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, wormholes}) => {
     options = options.slice(0, 3);
     options.push(answer);
     options.sort();
@@ -18,12 +18,7 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback}
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [nextQuestion, setNextQuestion] = useState(false);
     const {speak} = useSpeechSynthesis();
-
-    // useEffect(() => {
-    //     console.log('called for ques: ' + question);
-    //     speak({text:question})
-    //   }, [question]);
-
+    console.log(wormholes);
     useEffect(() => {
         if(nextQuestion){
             console.log('called');
@@ -31,8 +26,15 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback}
                 if (askQuestionCtx.question - 1 == 0) {
                     if (pawnCtx.index + correctAnswer <= 100) {
                         pawnCtx.setNewPawnPosition(pawnCtx.index + correctAnswer);
+                        if ((pawnCtx.index + correctAnswer) in wormholes) {
+                            if (wormholes[pawnCtx.index + correctAnswer] > pawnCtx) {
+                                commonFunctions.playGoodWormholeSound();
+                            } else {
+                                commonFunctions.playBadWormholeSound();
+                            }
+                            pawnCtx.setNewPawnPosition(wormholes[pawnCtx.index + correctAnswer]);
+                        }
                         correctAnswer = 0;
-                        // TODO: check for wormholes
                     } else {
                         // TODO: Show Message that you can't move these many turns
                     }
@@ -40,8 +42,7 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback}
                 askQuestionCtx.askNewQuestion(askQuestionCtx.question - 1);
             },2000);
         setNextQuestion(false);
-    }
-    }, [nextQuestion]);
+    }}, [nextQuestion]);
 
     const answerClick = (selectedOption) => {
         setSelectedAnswer(selectedOption);

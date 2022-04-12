@@ -3,7 +3,7 @@ import commonFunctions from '../CommonFunctions';
 
 let numberOfQuestions;
 const AppControllerFunctions = {
-    askQuestionHandler : (questionBag, askQuestion, setDiceCallback) => {
+    askQuestionHandler : (questionBag, askQuestion, setDiceCallback, wormholes) => {
         return (
           <Question 
             question = {questionBag[askQuestion - 1].question} 
@@ -11,6 +11,7 @@ const AppControllerFunctions = {
             answer = {questionBag[askQuestion - 1].answer} 
             numberOfQuestion = {numberOfQuestions}
             setDice = {(val) => setDiceCallback(val)}
+            wormholes = {wormholes}
             />
         )
       },
