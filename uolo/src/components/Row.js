@@ -3,7 +3,7 @@ import './Component.css';
 
 const createRow = (index, wormholes) => {
     return (
-        <Cell index = {index} wormholes = {wormholes} />    
+        <Cell key = {`cell-${index}`} index = {index} wormholes = {wormholes} />    
     )
 }
 
