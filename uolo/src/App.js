@@ -6,7 +6,11 @@ import AppControllerFunctions from './controller/app-controller';
 import AskQuestionContext from './store/ask-question';
 import DiceContext from './store/dice';
 import commonFunctions from './CommonFunctions';
+<<<<<<< Updated upstream
 import MessageBox from './components/MessageBoxComponent';
+=======
+>>>>>>> Stashed changes
+import GameOver from './components/GameOver';
 
 let questionBag = [];
 const diceArray = [
@@ -35,11 +39,15 @@ function App () {
   const diceCtx = useContext(DiceContext);
   const [showDice, setShowDice] = useState(false);
   const [audioOn, setAudioOn] = useState(true);
+<<<<<<< Updated upstream
   const [showMessageBox, toggleShowMessageBox] = useState({});
   const [over50, isOver50] = useState(false);
+=======
+>>>>>>> Stashed changes
+  const [gameOver, setGameOver] = useState(false);
 
   async function fetchQuestions(category) {
-    await fetch(`https://opentdb.com/api.php?amount=${category}&category=9&difficulty=easy&type=multiple`)
+    await fetch(`https://opentdb.com/api.php?amount=50&category=${category}&difficulty=easy&type=multiple`)
       .then(response => response.json())
         .then(data => {
           const questionArray = data.results.map(function(question) {
@@ -59,7 +67,7 @@ function App () {
 
   useEffect(() => {
     pawnCtx.setNewPawnPosition(pawnCtx.index); 
-    fetchQuestions(50)
+    fetchQuestions(9)
   }, []);
 
   if (over50) {
@@ -104,6 +112,7 @@ function App () {
           questionBag, 
           askQuestionCtx.question,
           (val) => setShowDice(val),
+          (val) => setGameOver(val),
           audioOn,
           wormholes,
           (val) => isOver50(val)
@@ -165,6 +174,7 @@ function App () {
           {renderGrid()}
           {renderQuestion()}
         </div>
+        { gameOver ? <GameOver audioOn={audioOn} /> : null}
       </header>
   );
 }

@@ -3,7 +3,11 @@ import commonFunctions from '../CommonFunctions';
 
 let numberOfQuestions;
 const AppControllerFunctions = {
-    askQuestionHandler : (questionBag, askQuestion, setDiceCallback, audioOn, wormholes, isOver50Callback) => {
+<<<<<<< Updated upstream
+    askQuestionHandler : (questionBag, askQuestion, setDiceCallback, setGameOver, audioOn, wormholes, isOver50Callback) => {
+=======
+    askQuestionHandler : (questionBag, askQuestion, setDiceCallback, setGameOver, audioOn, wormholes) => {
+>>>>>>> Stashed changes
         return (
           <Question 
             question = {questionBag[askQuestion - 1].question} 
@@ -11,6 +15,7 @@ const AppControllerFunctions = {
             answer = {questionBag[askQuestion - 1].answer} 
             numberOfQuestion = {numberOfQuestions}
             setDiceCallback = {(val) => setDiceCallback(val)}
+            setGameOver = {(val) => setGameOver(val)}
             audioOn = {audioOn}
             wormholes = {wormholes}
             isOver50Callback = {isOver50Callback}
