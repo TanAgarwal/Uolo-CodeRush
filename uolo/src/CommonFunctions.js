@@ -35,10 +35,15 @@ const commonFunctions = {
     playBadWormholeSound : () => {
         SoundPlay('/audio/bad-wormhole.mp3')
     },
-    
+
     playAudioToggleSound : () => {
         SoundPlay('/audio/Mouse_Click_Sound_Effect.mp3');
-    }
+    },
+
+    playGameOverSound : () => {
+        SoundPlay('/audio/Game_Over_Sound_Affect.mp3');
+    },
+
 }
 
 export default commonFunctions;

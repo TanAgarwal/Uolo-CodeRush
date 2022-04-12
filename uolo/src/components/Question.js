@@ -4,11 +4,14 @@ import { useContext, useEffect, useState } from 'react';
 import PawnContext from '../store/pawn-context';
 import commonFunctions from '../CommonFunctions';
 import TextToSpeech from './TextToSpeech';
+import SpeakToAnswer from './SpeakToAnswer';
+import GameOver from './GameOver';
 import Timer from './Timer';
 
 let correctAnswer = 0;
 let currentQuestion = 1;
-const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, audioOn, wormholes}) => {
+let numberOfRetries = 0;
+const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes}) => {
     options = options.slice(0, 3);
     options.push(answer);
     options.sort();
@@ -17,11 +20,25 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
     const [styleButton, setStyleButton] = useState(null);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [nextQuestion, setNextQuestion] = useState(false);
-    
+    const [buttondisabled, setButtonDisabled] = useState(false);
+<<<<<<< Updated upstream
+=======
+    console.log(wormholes);
+>>>>>>> Stashed changes
     useEffect(() => {
         if(nextQuestion){
+            setButtonDisabled(true);
             setTimeout(()=>{
+                setButtonDisabled(false);
                 if (askQuestionCtx.question - 1 == 0) {
+                    if(correctAnswer === 0)
+                    {
+                        numberOfRetries += 1;
+                        console.log(numberOfRetries)
+                        if(numberOfRetries === 1 ){
+                            setGameOver(true);
+                        }
+                    }
                     if (pawnCtx.index + correctAnswer <= 100) {
                         pawnCtx.setNewPawnPosition(pawnCtx.index + correctAnswer);
                         if ((pawnCtx.index + correctAnswer) in wormholes) {
@@ -33,10 +50,11 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                             pawnCtx.setNewPawnPosition(wormholes[pawnCtx.index + correctAnswer]);
                         }
                         correctAnswer = 0;
-                        currentQuestion = 1;
+                        // TODO: check for wormholes
                     } else {
                         // TODO: Show Message that you can't move these many turns
                     }
+                    currentQuestion = 0;
                     setDiceCallback(true);
                 }
                 currentQuestion += 1;
@@ -47,19 +65,18 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
 
     const answerClick = (selectedOption) => {
         setSelectedAnswer(selectedOption);
+        setNextQuestion(true);
         if (selectedOption === answer) {
             if(audioOn){
            commonFunctions.playCorrectAnswerSound();
             }
            setStyleButton('game-button green');
            correctAnswer += 1;
-           setNextQuestion(true);
         } else {
             if(audioOn){
             commonFunctions.playWrongAnswerSound();
             }
             setStyleButton('game-button red');
-            setNextQuestion(true);
         }
     }
 
@@ -76,10 +93,11 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
             </div>
             <div className='answer-section'>
                 {options.map((answerOption, index) => (
-                    <button key={index} className={selectedAnswer === answerOption ? styleButton : 'game-button'} onClick = {() => answerClick(answerOption)}>{answerOption}</button>
+                    <button key={index} disabled={buttondisabled} className={selectedAnswer === answerOption ? styleButton : 'game-button'} onClick = {() => answerClick(answerOption)}>{answerOption}</button>
                 ))}
             </div>
             { audioOn ? <TextToSpeech question={question}/> : null}
+            {/* <SpeakToAnswer answerClick={answerClick}/> */}
         </div>
     );
 }

@@ -3,11 +3,13 @@ import { useEffect } from 'react';
 
 const TextToSpeech = ({question}) => {
   const {speak} = useSpeechSynthesis();
-
+  
+async function speakQuestion(){
+    await speak({text:question});
+}
   useEffect(() => {
-    console.log(question);
-    speak({text:question});
-    console.log("coming");
+      console.log(question);
+      speakQuestion();
   }, [question]);
 
 }
