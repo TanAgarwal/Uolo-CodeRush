@@ -2,7 +2,7 @@ import Row from "./Row";
 
 const createCol = (i, isOdd, wormholes) => {
     return (
-        <Row index = {i} isOdd = {isOdd} wormholes = {wormholes} />
+        <Row key = {`row-${i}`} index = {i} isOdd = {isOdd} wormholes = {wormholes} />
     )
 }
 

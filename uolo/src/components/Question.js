@@ -17,10 +17,9 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
     const [styleButton, setStyleButton] = useState(null);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [nextQuestion, setNextQuestion] = useState(false);
-    console.log(wormholes);
+    
     useEffect(() => {
         if(nextQuestion){
-            console.log(wormholes);
             setTimeout(()=>{
                 if (askQuestionCtx.question - 1 == 0) {
                     if (pawnCtx.index + correctAnswer <= 100) {
@@ -35,7 +34,6 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                         }
                         correctAnswer = 0;
                         currentQuestion = 1;
-                        // TODO: check for wormholes
                     } else {
                         // TODO: Show Message that you can't move these many turns
                     }

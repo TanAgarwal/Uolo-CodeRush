@@ -4,9 +4,6 @@
 }
 
 .grid {
-  /* background-image: url('../public/images/grid1.jpeg'); */
-  /* background-repeat: no-repeat;
-  background-size: cover; */
   padding: 10px;
 }
 
@@ -82,19 +79,19 @@
 
 .rainbowText {
   font-family: 'Rubik Moonrocks', cursive;
-    font-size: 3rem;
-    letter-spacing: 0.15rem;
-    text-transform: uppercase;
-    color: #fff;
-    text-shadow: -4px 4px #ef3550,
-                 -8px 8px #f48fb1,
-                 -12px 12px #7e57c2,
-                 -16px 16px #2196f3,
-                 -20px 20px #26c6da,
-                 -24px 24px #43a047,
-                 -28px 28px #eeff41,
-                 -32px 32px #f9a825,
-                 -36px 36px #ff5722;
+  font-size: 3rem;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: -4px 4px #ef3550,
+                -8px 8px #f48fb1,
+                -12px 12px #7e57c2,
+                -16px 16px #2196f3,
+                -20px 20px #26c6da,
+                -24px 24px #43a047,
+                -28px 28px #eeff41,
+                -32px 32px #f9a825,
+                -36px 36px #ff5722;
   font-size: 80px;
 }
 
@@ -152,10 +149,23 @@
   }
   
 }
+
 .mic{
   width: 70px;
   height: 70px;
   position: absolute;
   right: 10%;
   top: 5%;
+}
+
+.exit-button {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-animation: swinging 3.5s ease-in-out forwards infinite;
+  animation: swinging 3.5s ease-in-out forwards infinite;
 }

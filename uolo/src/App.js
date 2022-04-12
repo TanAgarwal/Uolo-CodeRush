@@ -6,6 +6,7 @@ import AppControllerFunctions from './controller/app-controller';
 import AskQuestionContext from './store/ask-question';
 import DiceContext from './store/dice';
 import commonFunctions from './CommonFunctions';
+import MessageBox from './components/MessageBoxComponent';
 
 let questionBag = [];
 const diceArray = [
@@ -26,30 +27,45 @@ const wormholes = {
   25: 45
 }
 
+const questionCategory = [9, 27, 19, 18, 22, 10, 17]
+
 function App () {
   const pawnCtx = useContext(PawnContext);
   const askQuestionCtx = useContext(AskQuestionContext);
   const diceCtx = useContext(DiceContext);
-  const [showDice, setShowDice] = useState(true);
+  const [showDice, setShowDice] = useState(false);
   const [audioOn, setAudioOn] = useState(true);
+  const [showMessageBox, toggleShowMessageBox] = useState({});
+  const [over50, isOver50] = useState(false);
 
-  useEffect(() => {
-    pawnCtx.setNewPawnPosition(pawnCtx.index);
-    fetch('https://opentdb.com/api.php?amount=50&category=9&difficulty=easy&type=multiple')
-        .then(response => response.json())
+  async function fetchQuestions(category) {
+    await fetch(`https://opentdb.com/api.php?amount=${category}&category=9&difficulty=easy&type=multiple`)
+      .then(response => response.json())
         .then(data => {
           const questionArray = data.results.map(function(question) {
-            return {
+            if (!question.question.includes(';')) {
+              return {
                 question: question.question, 
                 answer: question.correct_answer,
                 status: 1,
                 options: question.incorrect_answers
+              }
             }
           })
           questionBag = questionArray;
         })
-        setShowDice(true);
+      setShowDice(true);
+  }
+
+  useEffect(() => {
+    pawnCtx.setNewPawnPosition(pawnCtx.index); 
+    fetchQuestions(50)
   }, []);
+
+  if (over50) {
+    fetchQuestions(questionCategory[0]);
+    questionCategory.shift();
+  }
 
   /**************** UI RENDERING FUNCTIONS ****************/
 
@@ -58,11 +74,11 @@ function App () {
       if (diceCtx.number == 7) {
         return (
           <input className = 'dice-with-letter-n' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} 
-          onClick = {() => AppControllerFunctions.rollDice(
-            (val) => askQuestionCtx.askNewQuestion(val), 
-            (val) => setShowDice(val),
-            (val) => diceCtx.setNewDiceNumber(val),
-            audioOn)} />
+            onClick = {() => AppControllerFunctions.rollDice(
+              (val) => askQuestionCtx.askNewQuestion(val), 
+              (val) => setShowDice(val),
+              (val) => diceCtx.setNewDiceNumber(val),
+              audioOn)} />
         )
       }
       return (
@@ -89,7 +105,8 @@ function App () {
           askQuestionCtx.question,
           (val) => setShowDice(val),
           audioOn,
-          wormholes
+          wormholes,
+          (val) => isOver50(val)
           )
       );
     }
@@ -98,6 +115,33 @@ function App () {
   const toggleAudio = () =>{
     commonFunctions.playAudioToggleSound();
     audioOn ? setAudioOn(false) : setAudioOn(true)
+  }
+
+  const backButton = () => {
+
+  }
+
+  const showBackButtonMessageBox = () => {
+    toggleShowMessageBox({
+      "Are you really want to go back?" : {
+        "YES" : backButton,
+        "NO" : () => toggleShowMessageBox({})
+      }
+    });
+  }
+
+  const exit = () => {
+    window.open("about:blank", "_self");
+    window.close();
+  }
+
+  const showExitMessageBox = () => {
+    toggleShowMessageBox({
+      "Are you really want to exit?" : {
+        "YES" : exit,
+        "NO" : () => toggleShowMessageBox({})
+      }
+    });
   }
 
   /**************** MAIN RETURN FUNCTION ****************/
@@ -109,6 +153,14 @@ function App () {
         <div className='mic' onClick={toggleAudio}>
           { audioOn ? <img src='/images/speaker.png'/> : <img src='/images/mute.png'/>}
         </div>
+        <div onClick = {showExitMessageBox}> <img className = 'exit-button' src = '/images/exit.png' /> </div>
+        
+        {Object.keys(showMessageBox).length !== 0 ? 
+          <MessageBox 
+            msg = {Object.keys(showMessageBox)[0]}
+            options = {Object.values(showMessageBox)[0]}
+          /> : null}
+        
         <div className = 'dice-n-grid'> 
           {renderGrid()}
           {renderQuestion()}
