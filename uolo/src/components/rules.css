@@ -1,0 +1,108 @@
+.rules-container {
+    position: absolute;
+    z-index: 2;
+    margin: 0px;
+    top: 0%;
+    left: 0%;
+}
+
+.rainbowTextRules {
+    position: absolute;
+    left: 30%;
+    font-family: 'Rubik Moonrocks', cursive;
+    font-size: 3rem;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: -4px 4px #ef3550,
+                  -8px 8px #f48fb1,
+                  -12px 12px #7e57c2,
+                  -16px 16px #2196f3,
+                  -20px 20px #26c6da,
+                  -24px 24px #43a047,
+                  -28px 28px #eeff41,
+                  -32px 32px #f9a825,
+                  -36px 36px #ff5722;
+    font-size: 80px;
+  }
+
+.rules {
+    background-image: url('../../public/images/frame.png');
+    background-repeat: no-repeat;
+    height: 1205px;
+    width: 1795px;
+    background-size: cover;
+}
+
+.heading {
+    position: absolute;
+    top: 25%;
+    left: 60%;
+    color: red;
+    font-size: 40px;
+}
+
+.rules-text {
+    color: red;
+    position: absolute;
+    font-family: 'Lobster Two', cursive;
+    top: 25%;
+    left: 40%;
+    font-size: 30px;
+}
+
+.play-button {
+    border: solid 2px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    position: absolute;
+    top: 60%;
+    left: 60%;
+    background-color: chocolate;
+    font-family: 'Special Elite', cursive;
+    box-shadow: 5px 10px brown;
+    font-size: 60px;
+    padding: 10px;
+}
+
+.play-button:hover {
+    border: solid 2px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    position: absolute;
+    top: 60%;
+    left: 60%;
+    background-color: chocolate;
+    font-family: 'Special Elite', cursive;
+    box-shadow: 5px 10px brown;
+    font-size: 60px;
+    padding: 10px;
+    animation: shake 1s both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  @keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+
+.swingimageRules {
+    margin: 0px;
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-animation: swinging 3.5s ease-in-out forwards infinite;
+    animation: swinging 3.5s ease-in-out forwards infinite;
+  }

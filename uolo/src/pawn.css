@@ -1,0 +1,47 @@
+.pawn-right {
+    background-image: url('../public/images/pawn-right.png');
+    height: 70px;
+    width: 70px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .pawn-left {
+    background-image: url('../public/images/pawn-left.png');
+    height: 70px;
+    width: 70px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .pawn1-right {
+    background-image: url('../public/images/pawn1-right.png');
+    height: 70px;
+    width: 70px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .pawn1-left {
+    background-image: url('../public/images/pawn1-left.png');
+    height: 70px;
+    width: 70px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .pawn2-right {
+    background-image: url('../public/images/pawn2-right.png');
+    height: 70px;
+    width: 70px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .pawn2-left {
+    background-image: url('../public/images/pawn2-left.png');
+    height: 70px;
+    width: 70px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

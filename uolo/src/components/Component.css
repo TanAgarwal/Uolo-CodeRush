@@ -41,7 +41,7 @@
   box-shadow: 5px 10px brown;
 }
 
-.messageBoxOptions :hover {
+.messageBoxOptions:hover {
   background-color: chocolate;
   font-family: 'Special Elite', cursive;
   height: 50px;
