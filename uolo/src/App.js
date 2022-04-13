@@ -6,13 +6,11 @@ import AppControllerFunctions from './controller/app-controller';
 import AskQuestionContext from './store/ask-question';
 import DiceContext from './store/dice';
 import commonFunctions from './CommonFunctions';
-<<<<<<< Updated upstream
 import MessageBox from './components/MessageBoxComponent';
-=======
->>>>>>> Stashed changes
 import GameOver from './components/GameOver';
+import Rules from './components/rulesComponent';
 
-let questionBag = [];
+let mainQuestionBag = [];
 const diceArray = [
   '/images/dice/1.jpg', 
   '/images/dice/2.jpg',
@@ -39,11 +37,7 @@ function App () {
   const diceCtx = useContext(DiceContext);
   const [showDice, setShowDice] = useState(false);
   const [audioOn, setAudioOn] = useState(true);
-<<<<<<< Updated upstream
   const [showMessageBox, toggleShowMessageBox] = useState({});
-  const [over50, isOver50] = useState(false);
-=======
->>>>>>> Stashed changes
   const [gameOver, setGameOver] = useState(false);
 
   async function fetchQuestions(category) {
@@ -51,26 +45,25 @@ function App () {
       .then(response => response.json())
         .then(data => {
           const questionArray = data.results.map(function(question) {
-            if (!question.question.includes(';')) {
-              return {
-                question: question.question, 
-                answer: question.correct_answer,
-                status: 1,
-                options: question.incorrect_answers
-              }
+            return {
+              question: question.question, 
+              answer: question.correct_answer,
+              status: 1,
+              options: question.incorrect_answers
             }
           })
-          questionBag = questionArray;
+          mainQuestionBag = questionArray;
+          
         })
       setShowDice(true);
   }
 
   useEffect(() => {
-    pawnCtx.setNewPawnPosition(pawnCtx.index); 
+    pawnCtx.setNewPawnPosition(1, pawnCtx.index); 
     fetchQuestions(9)
   }, []);
 
-  if (over50) {
+  if (mainQuestionBag === 0) {
     fetchQuestions(questionCategory[0]);
     questionCategory.shift();
   }
@@ -79,7 +72,7 @@ function App () {
 
   const renderDice = () => {
     if (showDice) {
-      if (diceCtx.number == 7) {
+      if (diceCtx.number === 7) {
         return (
           <input className = 'dice-with-letter-n' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} 
             onClick = {() => AppControllerFunctions.rollDice(
@@ -109,13 +102,11 @@ function App () {
     if (askQuestionCtx.question != 0) {
       return (
         AppControllerFunctions.askQuestionHandler(
-          questionBag, 
-          askQuestionCtx.question,
+          mainQuestionBag.splice(0, 1), 
           (val) => setShowDice(val),
           (val) => setGameOver(val),
           audioOn,
-          wormholes,
-          (val) => isOver50(val)
+          wormholes
           )
       );
     }
@@ -153,8 +144,16 @@ function App () {
     });
   }
 
+  const play = () => {
+    let div = document.getElementById('header');
+    // div.classList.remove('App-header banner');
+    div.className = "App-header banner-play-button";
+  }
+
   /**************** MAIN RETURN FUNCTION ****************/
   return (
+    <div>
+      <div id = 'rules'><Rules /></div>
       <header id = "header" className="App-header">
         <div className='swingimage'>
           <div className='rainbowText'>GK</div> <div>{renderDice()}</div><div className='rainbowText'> LUCK</div>
@@ -176,6 +175,7 @@ function App () {
         </div>
         { gameOver ? <GameOver audioOn={audioOn} /> : null}
       </header>
+    </div>
   );
 }
 

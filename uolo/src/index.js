@@ -12,9 +12,7 @@ root.render(
   <DiceContextProvider>
     <PawnContextProvider>
       <AskQuestionContextProvider>
-        <React.StrictMode>
-            <App />
-        </React.StrictMode>
+          <App />
       </AskQuestionContextProvider>    
     </PawnContextProvider>
   </DiceContextProvider>

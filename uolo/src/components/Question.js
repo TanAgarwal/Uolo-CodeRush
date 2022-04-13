@@ -21,10 +21,7 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [nextQuestion, setNextQuestion] = useState(false);
     const [buttondisabled, setButtonDisabled] = useState(false);
-<<<<<<< Updated upstream
-=======
-    console.log(wormholes);
->>>>>>> Stashed changes
+
     useEffect(() => {
         if(nextQuestion){
             setButtonDisabled(true);
@@ -35,22 +32,23 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                     {
                         numberOfRetries += 1;
                         console.log(numberOfRetries)
-                        if(numberOfRetries === 1 ){
+                        if(numberOfRetries === 3 ){
                             setGameOver(true);
                         }
                     }
                     if (pawnCtx.index + correctAnswer <= 100) {
-                        pawnCtx.setNewPawnPosition(pawnCtx.index + correctAnswer);
+                        let newPosition = pawnCtx.index + correctAnswer;
                         if ((pawnCtx.index + correctAnswer) in wormholes) {
-                            if (wormholes[pawnCtx.index + correctAnswer] > pawnCtx) {
+                            if (wormholes[pawnCtx.index + correctAnswer] > pawnCtx.index + correctAnswer) {
                                 commonFunctions.playGoodWormholeSound();
+                                newPosition = wormholes[pawnCtx.index + correctAnswer];
                             } else {
                                 commonFunctions.playBadWormholeSound();
+                                newPosition = wormholes[pawnCtx.index + correctAnswer];
                             }
-                            pawnCtx.setNewPawnPosition(wormholes[pawnCtx.index + correctAnswer]);
                         }
+                        pawnCtx.setNewPawnPosition(pawnCtx.index, newPosition);
                         correctAnswer = 0;
-                        // TODO: check for wormholes
                     } else {
                         // TODO: Show Message that you can't move these many turns
                     }
@@ -68,13 +66,13 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
         setNextQuestion(true);
         if (selectedOption === answer) {
             if(audioOn){
-           commonFunctions.playCorrectAnswerSound();
+                commonFunctions.playCorrectAnswerSound();
             }
            setStyleButton('game-button green');
            correctAnswer += 1;
         } else {
             if(audioOn){
-            commonFunctions.playWrongAnswerSound();
+                commonFunctions.playWrongAnswerSound();
             }
             setStyleButton('game-button red');
         }
