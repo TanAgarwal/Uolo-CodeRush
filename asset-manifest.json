@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Uolo-CodeRush/static/css/main.449a7562.css",
+    "main.js": "/Uolo-CodeRush/static/js/main.23a14d77.js",
+    "static/js/787.6e52568b.chunk.js": "/Uolo-CodeRush/static/js/787.6e52568b.chunk.js",
+    "static/media/frame.png": "/Uolo-CodeRush/static/media/frame.8183ac15d8d76540eb0e.png",
+    "static/media/school-frame.png": "/Uolo-CodeRush/static/media/school-frame.2d4fea1ce69569edc835.png",
+    "static/media/celebration.gif": "/Uolo-CodeRush/static/media/celebration.6a952629b54cf92e3134.gif",
+    "static/media/message-box.png": "/Uolo-CodeRush/static/media/message-box.d2ae9f22d9f5ddcfef0f.png",
+    "static/media/pawn1-right.png": "/Uolo-CodeRush/static/media/pawn1-right.a3572d4c26928d5bf9ee.png",
+    "static/media/pawn1-left.png": "/Uolo-CodeRush/static/media/pawn1-left.0fb55883a231c2d90123.png",
+    "static/media/pawn2-left.png": "/Uolo-CodeRush/static/media/pawn2-left.ceae2c931363922c2b17.png",
+    "static/media/pawn2-right.png": "/Uolo-CodeRush/static/media/pawn2-right.5f7ad92b9d40047c6b6f.png",
+    "static/media/pawn-right.png": "/Uolo-CodeRush/static/media/pawn-right.851f906615db9daf2b2c.png",
+    "static/media/pawn-left.png": "/Uolo-CodeRush/static/media/pawn-left.e1be082b5ca679541ac9.png",
+    "index.html": "/Uolo-CodeRush/index.html",
+    "main.449a7562.css.map": "/Uolo-CodeRush/static/css/main.449a7562.css.map",
+    "main.23a14d77.js.map": "/Uolo-CodeRush/static/js/main.23a14d77.js.map",
+    "787.6e52568b.chunk.js.map": "/Uolo-CodeRush/static/js/787.6e52568b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.449a7562.css",
+    "static/js/main.23a14d77.js"
+  ]
+}
