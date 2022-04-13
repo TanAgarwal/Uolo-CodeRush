@@ -9,6 +9,7 @@ import commonFunctions from './CommonFunctions';
 import MessageBox from './components/MessageBoxComponent';
 import GameOver from './components/GameOver';
 import Rules from './components/rulesComponent';
+import Congratulations from './components/Congratulations';
 
 let mainQuestionBag = [];
 const diceArray = [
@@ -79,7 +80,8 @@ function App () {
               (val) => askQuestionCtx.askNewQuestion(val), 
               (val) => setShowDice(val),
               (val) => diceCtx.setNewDiceNumber(val),
-              audioOn)} />
+              audioOn)}
+               />
         )
       }
       return (
@@ -88,7 +90,9 @@ function App () {
             (val) => askQuestionCtx.askNewQuestion(val), 
             (val) => setShowDice(val),
             (val) => diceCtx.setNewDiceNumber(val),
-            audioOn)} />
+            audioOn)}
+            disabled = {gameOver}
+             />
       );
     }
     return <input className = 'dice' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} />;
@@ -113,8 +117,10 @@ function App () {
   }
 
   const toggleAudio = () =>{
+    if(!gameOver){
     commonFunctions.playAudioToggleSound();
     audioOn ? setAudioOn(false) : setAudioOn(true)
+    }
   }
 
   const backButton = () => {
@@ -131,17 +137,28 @@ function App () {
   }
 
   const exit = () => {
-    window.open("about:blank", "_self");
-    window.close();
+    if(audioOn){
+        commonFunctions.playAudioToggleSound();
+    }
+    setTimeout(() => {
+      window.open("about:blank", "_self");
+      window.close();
+    },2000)
   }
 
   const showExitMessageBox = () => {
-    toggleShowMessageBox({
-      "Are you really want to exit?" : {
-        "YES" : exit,
-        "NO" : () => toggleShowMessageBox({})
+    if(!gameOver){
+      if(audioOn){
+          commonFunctions.playAudioToggleSound();
       }
-    });
+      toggleShowMessageBox({
+        "Are you really want to exit?" : {
+          "YES" : exit,
+          "NO" : () => {toggleShowMessageBox({}) 
+          commonFunctions.playAudioToggleSound();}
+        }
+      });
+    }
   }
 
   const play = () => {
@@ -159,7 +176,7 @@ function App () {
           <div className='rainbowText'>GK</div> <div>{renderDice()}</div><div className='rainbowText'> LUCK</div>
         </div>
         <div className='mic' onClick={toggleAudio}>
-          { audioOn ? <img src='/images/speaker.png'/> : <img src='/images/mute.png'/>}
+          { audioOn ? <img src='/images/pngwing.com.png'/> : <img src='/images/mute.png'/>}
         </div>
         <div onClick = {showExitMessageBox}> <img className = 'exit-button' src = '/images/exit.png' /> </div>
         
@@ -172,8 +189,9 @@ function App () {
         <div className = 'dice-n-grid'> 
           {renderGrid()}
           {renderQuestion()}
+          { gameOver ? <GameOver audioOn={audioOn} showExitMessageBox={showExitMessageBox}/> : null}
+          {/* <Congratulations/> */}
         </div>
-        { gameOver ? <GameOver audioOn={audioOn} /> : null}
       </header>
     </div>
   );

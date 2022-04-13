@@ -4,8 +4,6 @@ import { useContext, useEffect, useState } from 'react';
 import PawnContext from '../store/pawn-context';
 import commonFunctions from '../CommonFunctions';
 import TextToSpeech from './TextToSpeech';
-import SpeakToAnswer from './SpeakToAnswer';
-import GameOver from './GameOver';
 import Timer from './Timer';
 
 let correctAnswer = 0;
@@ -32,7 +30,7 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                     {
                         numberOfRetries += 1;
                         console.log(numberOfRetries)
-                        if(numberOfRetries === 3 ){
+                        if(numberOfRetries === 1 ){
                             setGameOver(true);
                         }
                     }
@@ -85,7 +83,7 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                     <div className='question-number'>
                         <span>Question {currentQuestion}</span>/{numberOfQuestion}
                     </div>
-                    <div className='timer'> <Timer setNextQuestion={setNextQuestion} question={question} audioOn={audioOn}/> </div>
+                    <div className='timer'> <Timer setNextQuestion={setNextQuestion} selectedAnswer={selectedAnswer} question={question} audioOn={audioOn}/> </div>
                 </div>
                 <div className='question-text'>{question}</div>
             </div>

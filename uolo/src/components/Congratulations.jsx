@@ -21,11 +21,11 @@ const handleClickReplay = () => {
     },2000)
 }
 return(
-    <div className='game-over'>
-        <div className='game-over-text'>
-            Game Over
+    <div className='victory'>
+        <div className='you-won'>
+            YOU WON!
         </div>
-        <img className='image' src='/images/crying.gif'/>
+        <div className='tag-line' >'Luck matched your GK'</div>
         <div className='buttons'>
             <button className='game-button retry' onClick={handleClickReplay}>Replay</button>
             <button className='game-button exit' onClick={showExitMessageBox}>Exit</button>
