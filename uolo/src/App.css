@@ -11,6 +11,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -143,10 +144,10 @@
 }
 
 .mic{
-  width: 70px;
-  height: 70px;
+  width: 10%;
+  height: 10%;
   position: absolute;
-  right: 10%;
+  left: 5%;
   top: 5%;
 }
 
