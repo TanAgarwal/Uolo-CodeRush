@@ -184,7 +184,15 @@ function App () {
   const renderGaveOverBox = () => {
     if (gameOver) {
       return (
-        <GameOver audioOn={audioOn} showExitMessageBox={showExitMessageBox}/>
+        <GameOver audioOn={audioOn} toggleShowMessageBox={toggleShowMessageBox}/>
+      )
+    }
+  }
+
+  const renderVictoryBox = () => {
+    if (win) {
+      return (
+        <Victory audioOn={audioOn} toggleShowMessageBox={toggleShowMessageBox}/>
       )
     }
   }
@@ -251,7 +259,7 @@ function App () {
           {renderGrid()}
           {renderQuestion()}
           {renderGaveOverBox()}
-          { win ? <Victory/> : null}
+          {renderVictoryBox()}
         </div>
       </header>
     </div>

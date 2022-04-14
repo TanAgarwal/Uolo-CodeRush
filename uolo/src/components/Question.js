@@ -9,7 +9,7 @@ import Timer from './Timer';
 let correctAnswer = 0;
 let currentQuestion = 1;
 let numberOfRetries = 0;
-const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes}) => {
+const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes, numberOfChances}) => {
     options = options.slice(0, 3);
     options.push(answer);
     options.sort();
@@ -32,7 +32,15 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                     if(correctAnswer === 0) {
                         numberOfRetries += 1;
                         console.log(numberOfRetries)
-                        if(numberOfRetries === 3){
+                        if(numberOfRetries === 1){
+                            console.log("chances:" + numberOfChances)
+                            fetch('http://localhost:3000/users',{
+                                method: 'POST',
+                                headers: {"Content-Type": "application/json"},
+                                body: JSON.stringify({name: "Khushboo Gour", numberOfChances: numberOfChances})
+                            }).then(() => {
+                                console.log("entry added");
+                            })
                             setGameOver(true);
                         }
                     }
