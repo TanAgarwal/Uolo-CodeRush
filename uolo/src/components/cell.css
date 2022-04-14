@@ -1,15 +1,15 @@
 .cell {
-    display: flex;
-    width: 5vw;
-    height: 6.9vh;
-    border: 0.17vw solid brown;
-    border-radius: 0.2vw;
-    color: red;
-    margin: auto;
-    align-items:center;
-    justify-content:center;
-    font-family: 'Bangers', cursive;
-  }
+  display: flex;
+  width: 5vw;
+  height: 6.9vh;
+  border: 0.17vw solid brown;
+  border-radius: 0.2vw;
+  color: red;
+  margin: auto;
+  align-items:center;
+  justify-content:center;
+  font-family: 'Bangers', cursive;
+}
 
 .cell:hover {
   display: flex;
@@ -28,39 +28,22 @@
   perspective: 100vh;
 }
 
-.cell:hover {
-display: flex;
-width: 90px;
-height: 70px;
-border: 3px solid brown;
-border-radius: 5px;
-color: red;
-margin: auto;
-align-items:center;
-justify-content:center;
-font-family: 'Bangers', cursive;
-animation: shake 1s both;
-transform: translate3d(0, 0, 0);
-backface-visibility: hidden;
-perspective: 1000px;
-}
-
 @keyframes shake {
-10%, 90% {
-  transform: translate3d(-1px, 0, 0);
-}
+  10%, 90% {
+    transform: translate3d(-0.1vh, 0, 0);
+  }
 
-20%, 80% {
-  transform: translate3d(2px, 0, 0);
-}
+  20%, 80% {
+    transform: translate3d(0.2vh, 0, 0);
+  }
 
-30%, 50%, 70% {
-  transform: translate3d(-4px, 0, 0);
-}
+  30%, 50%, 70% {
+    transform: translate3d(-0.4vh, 0, 0);
+  }
 
-40%, 60% {
-  transform: translate3d(4px, 0, 0);
-}
+  40%, 60% {
+    transform: translate3d(0.4vh, 0, 0);
+  }
 }
 
 img {
@@ -73,49 +56,49 @@ img {
 }
 
 .rotate {
-    width: 4.1vw;
-    height: 7.1vh;
-    overflow: hidden;
-    animation: rotation 2s infinite linear;
+  width: 4.1vw;
+  height: 7.1vh;
+  overflow: hidden;
+  animation: rotation 2s infinite linear;
 }
 
 @keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .finish {
-    display: flex;
-    background-image: url('../../public/images/finish.gif');
-    width: 5vw;
-    height: 6.9vh;
-    border: 0.17vw solid brown;
-    border-radius: 0.2vw;
-    color: red;
-    margin: auto;
-    align-items:center;
-    justify-content:center;
-    font-family: 'Bangers', cursive;
+  display: flex;
+  background-image: url('../../public/images/finish.gif');
+  width: 5vw;
+  height: 6.9vh;
+  border: 0.17vw solid brown;
+  border-radius: 0.2vw;
+  color: red;
+  margin: auto;
+  align-items:center;
+  justify-content:center;
+  font-family: 'Bangers', cursive;
 }
 
 .finish:hover {
   display: flex;
-    background-image: url('../../public/images/finish.gif');
-    width: 5vw;
-    height: 6.9vh;
-    border: 0.17vw solid brown;
-    border-radius: 0.2vw;
-    color: red;
-    margin: auto;
-    align-items:center;
-    justify-content:center;
-    font-family: 'Bangers', cursive;
-    animation: shake 1s both;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 100vh;
+  background-image: url('../../public/images/finish.gif');
+  width: 5vw;
+  height: 6.9vh;
+  border: 0.17vw solid brown;
+  border-radius: 0.2vw;
+  color: red;
+  margin: auto;
+  align-items:center;
+  justify-content:center;
+  font-family: 'Bangers', cursive;
+  animation: shake 1s both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 100vh;
 }

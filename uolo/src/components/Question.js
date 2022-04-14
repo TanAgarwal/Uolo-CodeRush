@@ -9,7 +9,7 @@ import Timer from './Timer';
 let correctAnswer = 0;
 let currentQuestion = 1;
 let numberOfRetries = 0;
-const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes, numberOfChances}) => {
+const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes, numberOfChances, toggleShowMessageBoxCallback, name}) => {
     options = options.slice(0, 3);
     options.push(answer);
     options.sort();
@@ -32,15 +32,14 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                     if(correctAnswer === 0) {
                         numberOfRetries += 1;
                         console.log(numberOfRetries)
-                        if(numberOfRetries === 1){
-                            console.log("chances:" + numberOfChances)
-                            fetch('http://localhost:3000/users',{
-                                method: 'POST',
-                                headers: {"Content-Type": "application/json"},
-                                body: JSON.stringify({name: "Khushboo Gour", numberOfChances: numberOfChances})
-                            }).then(() => {
-                                console.log("entry added");
-                            })
+                        if (numberOfRetries < 3) {
+                            toggleShowMessageBoxCallback({
+                                "You have not given any correct answer!" : {
+                                  "OKAY" : () => toggleShowMessageBoxCallback({})
+                                }
+                              });
+                        }
+                        if(numberOfRetries === 3){
                             setGameOver(true);
                         }
                     }
@@ -66,7 +65,8 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                 setAnswerClicked(false);
                 setAnswerSelected(false);
                 console.log(currentQuestion);
-                console.log("here:"+askQuestionCtx.askNewQuestion(askQuestionCtx.question - 1));
+                console.log("here:");
+                askQuestionCtx.askNewQuestion(askQuestionCtx.question - 1)
                 currentQuestion += 1;
             },2000);
         setNextQuestion(false);

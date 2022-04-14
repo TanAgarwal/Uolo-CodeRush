@@ -1,26 +1,39 @@
 .rules-container {
-    position: absolute;
-    z-index: 2;
-    margin: 0vh;
-    top: 0%;
-    left: 0%;
+  position: absolute;
+  z-index: 2;
+  margin: 0vh;
+  top: 0%;
+  left: 0%;
+}
+
+.name-input {
+  height: 3vh;
+  width: 10vw;
+  background-color: white;
+  border-radius: 2vh;
+  font-family: 'Lobster Two', cursive;
+  padding: 1vh;
+  font-size: 2vh;
+  position: absolute;
+  top: 73%;
+  left: 50%;
 }
 
 .rules {
-    background-image: url('../../public/images/frame1.jpg');
-    background-repeat: no-repeat;
-    height: 120.5vh;
-    width: 100vw;
-    background-size: cover;
+  background-image: url('../../public/images/frame1.jpg');
+  background-repeat: no-repeat;
+  height: 120.5vh;
+  width: 100vw;
+  background-size: cover;
 }
 
 .heading {
-    position: absolute;
-    top: 12%;
-    font-family: 'Lobster Two', cursive;
-    left: 50%;
-    color: red;
-    font-size: 7vh;
+  position: absolute;
+  top: 12%;
+  font-family: 'Lobster Two', cursive;
+  left: 50%;
+  color: red;
+  font-size: 7vh;
 }
 
 .rules-img {
@@ -29,108 +42,79 @@
 }
 
 .rules-text {
-    color: white;
-    position: absolute;
-    font-family: 'Lobster Two', cursive;
-    border: dashed 0.1vh white;
-    border-radius: 1vh;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    width: 98vh;
-    top: 17%;
-    left: 40%;
-    font-size: 3vh;
+  color: white;
+  position: absolute;
+  font-family: 'Lobster Two', cursive;
+  border: dashed 0.1vh white;
+  border-radius: 1vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  width: 98vh;
+  top: 17%;
+  left: 40%;
+  font-size: 3vh;
 }
 
 .play-button {
-    border: solid 0.2vh rgba(0,0,0,0.15);
-    border-radius: 1vh;
-    position: absolute;
-    top: 73%;
-    left: 63%;
-    background-color: chocolate;
-    font-family: 'Special Elite', cursive;
-    box-shadow: 0.5vh 1vh brown;
-    font-size: 5.5vh;
-    padding: 1vh;
+  border: solid 0.2vh rgba(0,0,0,0.15);
+  border-radius: 1vh;
+  position: absolute;
+  top: 73%;
+  left: 63%;
+  background-color: chocolate;
+  font-family: 'Special Elite', cursive;
+  box-shadow: 0.5vh 1vh brown;
+  font-size: 5.5vh;
+  padding: 1vh;
 }
 
 .play-button:hover {
-    border: solid 0.2vh rgba(0,0,0,0.15);
-    border-radius: 1vh;
-    position: absolute;
-    top: 73%;
-    left: 63%;
-    background-color: chocolate;
-    font-family: 'Special Elite', cursive;
-    box-shadow: 0.5vh 1vh brown;
-    font-size: 5.5vh;
-    padding: 1vh;
-    animation: shake 1s both;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 100vh;
+  border: solid 0.2vh rgba(0,0,0,0.15);
+  border-radius: 1vh;
+  position: absolute;
+  top: 73%;
+  left: 63%;
+  background-color: chocolate;
+  font-family: 'Special Elite', cursive;
+  box-shadow: 0.5vh 1vh brown;
+  font-size: 5.5vh;
+  padding: 1vh;
+  animation: shake 1s both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 100vh;
+}
+  
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
   }
   
-  @keyframes shake {
-    10%, 90% {
-      transform: translate3d(-1px, 0, 0);
-    }
-    
-    20%, 80% {
-      transform: translate3d(2px, 0, 0);
-    }
-  
-    30%, 50%, 70% {
-      transform: translate3d(-4px, 0, 0);
-    }
-  
-    40%, 60% {
-      transform: translate3d(4px, 0, 0);
-    }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
   }
 
-  .rotate-rules-img {
-    width: 3vh;
-    height: 1.7vw;
-    overflow: hidden;
-    animation: rotationImg 2s infinite linear;
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.rotate-rules-img {
+  width: 3vh;
+  height: 1.7vw;
+  overflow: hidden;
+  animation: rotationImg 2s infinite linear;
 }
 
 @keyframes rotationImg {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-}
-
-.fade-out {
-  position: absolute;
-  z-index: 2;
-  margin: 0vh;
-  top: 0%;
-  left: 0%;
-  -webkit-animation: fadeInFromNone 0.5s ease-out;
-  -moz-animation: fadeInFromNone 0.5s ease-out;
-  -o-animation: fadeInFromNone 0.5s ease-out;
-  animation: fadeInFromNone 0.5s ease-out;
-}
-
-@keyframes fadeInFromNone {
-  0% {
-      display: block;
-      opacity: 1;
+  from {
+    transform: rotate(0deg);
   }
-
-  1% {
-      display: block;
-      opacity: 1;
-  }
-
-  100% {
-      display: none;
-      opacity: 0;
+  to {
+    transform: rotate(360deg);
   }
 }

@@ -9,6 +9,7 @@ export const AskQuestionContextProvider = props => {
     const [question, askQuestion] = useState(0);
     
     const askNewQuestion = (index) => {
+        console.log("I M IN CONTEXT!");
         askQuestion(index);
     }
     

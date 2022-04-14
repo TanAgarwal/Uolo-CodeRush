@@ -1,0 +1,107 @@
+.history-container {
+    position: absolute;
+    background-image: url('../../public/images/history.jpg');
+    top: 17.6%;
+    left: 23%;
+    height: 73vh;
+    width: 91vh;
+    display: block;
+    font-family: 'Lobster Two', cursive;
+    z-index: 2;
+    padding: 1vh;
+    border-radius: 1vh;
+    display: none;
+}
+
+.blur-container {
+    backdrop-filter: blur(4vh);
+    height: 100%;
+}
+
+.table-container {
+    max-height: 59vh;
+    overflow: scroll;
+}
+
+table {
+    backdrop-filter: blur(4vh);
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+	vertical-align: middle;
+}
+
+caption {
+    font-weight: bold;
+    font-size: 5vh;
+    text-align: center;
+    color: #333;
+    margin-top: 1vh;
+    font-family: 'Bangers', cursive;
+    margin-bottom: 1vh;
+}
+
+th, td {
+    border-bottom: 0.1vh solid black;
+    padding: 2vh;
+}
+
+th {
+    font-family: 'Bangers', cursive;
+    font-size: 3vh;
+}
+
+td {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 2vh;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-button {
+  font-family: 'Bubblegum Sans', cursive;
+  margin-top: 2vh;
+  border: solid 0.2vh rgba(0,0,0,0.15);
+  border-radius: 1vh;
+  background-color: chocolate;
+  box-shadow: 0.5vh 1vh brown;
+  font-size: 4vh;
+  padding: 1vh;
+}
+
+.back-button:hover {
+    font-family: 'Bubblegum Sans', cursive;
+    border: solid 0.2vh rgba(0,0,0,0.15);
+    border-radius: 1vh;
+    background-color: chocolate;
+    box-shadow: 0.5vh 1vh brown;
+    font-size: 4vh;
+    padding: 1vh;
+    animation: back-button-shake 1s both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 100vh;
+  }
+    
+  @keyframes back-button-shake {
+    10%, 90% {
+      transform: translate3d(-0.1vh, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(0.2vh, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-0.4vh, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(0.4vh, 0, 0);
+    }
+  }

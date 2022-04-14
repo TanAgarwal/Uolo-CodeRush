@@ -10,6 +10,7 @@ import MessageBox from './components/MessageBoxComponent';
 import GameOver from './components/GameOver';
 import Rules from './components/rulesComponent';
 import Victory from './components/Victory';
+import History from './components/History';
 
 let mainQuestionBag = [];
 const diceArray = [
@@ -49,6 +50,7 @@ function App () {
   const [showMessageBox, toggleShowMessageBox] = useState({});
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
+  const [name, setName] = useState('');
 
   async function fetchQuestions(category) {
     await fetch(`https://opentdb.com/api.php?amount=50&category=${category}&difficulty=easy&type=multiple`)
@@ -122,7 +124,9 @@ function App () {
           (val) => setShowDice(val),
           (val) => setGameOver(val),
           audioOn,
-          wormholes
+          wormholes,
+          (val) => toggleShowMessageBox(val),
+          name
           )
       );
     }
@@ -130,7 +134,12 @@ function App () {
 
   const renderRules = () => {
     return (
-      <div id = 'rules'><Rules /></div>
+      <div id = 'rules'>
+        <Rules 
+          name = {name} 
+          setNameCallback = {(val) => setName(val)} 
+          toggleShowMessageBoxCallback = {(val) => toggleShowMessageBox(val)} />
+      </div>
     )
   }
 
@@ -197,6 +206,23 @@ function App () {
     }
   }
 
+  const renderScoreBoard = () => {
+    return (
+      <History />
+    )
+  }
+
+  const renderScoreBoardButton = () => {
+    return (
+      <div onClick = {() => {
+        var element = document.getElementById("history");
+        element.style.display = "block";
+      }}> 
+        <img alt = "Score Board Button" className = 'score-board-button' src = '/images/history-icon.png' /> 
+      </div>
+    )
+  }
+
   /**************** LOGICAL FUNCTIONS ****************/
 
   const toggleAudio = () =>{
@@ -249,8 +275,10 @@ function App () {
   return (
     <div>
       {renderRules()}
+      {renderScoreBoard()}
       <header id = "header" className="App-header">
         {renderGameHeading()}
+        {renderScoreBoardButton()}
         {renderMuteButton()}
         {renderHelpButton()}
         {renderExitButton()}
