@@ -45,6 +45,18 @@
   }
 }
 
+.score-board-button {
+  width: 5vw;
+  height: 6.9vh;
+  position: absolute;
+  left: 12%;
+  top: 5%;
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-animation: swinging 3.5s ease-in-out forwards infinite;
+  animation: swinging 3.5s ease-in-out forwards infinite;
+}
+
 /* SWING IMAGE */
 
 @-webkit-keyframes swinging{
@@ -149,7 +161,7 @@
   height: 6.9vh;
   position: absolute;
   left: 5%;
-  top: 5%;
+  top: 4%;
 }
 
 .help-button {

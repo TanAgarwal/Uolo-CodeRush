@@ -4,7 +4,7 @@ import commonFunctions from '../CommonFunctions';
 let numberOfQuestions;
 let numberOfChances = 0;
 const AppControllerFunctions = {
-    askQuestionHandler : (questionBag, setDiceCallback, setGameOver, audioOn, wormholes) => {
+    askQuestionHandler : (questionBag, setDiceCallback, setGameOver, audioOn, wormholes, toggleShowMessageBoxCallback, name) => {
         return (
           <Question 
             question = {questionBag[0].question} 
@@ -16,6 +16,8 @@ const AppControllerFunctions = {
             audioOn = {audioOn}
             wormholes = {wormholes}
             numberOfChances = {numberOfChances}
+            toggleShowMessageBoxCallback = {(val) => toggleShowMessageBoxCallback(val)}
+            name = {name}
             />
         )
       },

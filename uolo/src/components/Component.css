@@ -19,6 +19,11 @@
 }
 
 .messageBoxText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 3.5vh;
   font-family: 'Special Elite', cursive;
   margin: 2vh;
   color: black

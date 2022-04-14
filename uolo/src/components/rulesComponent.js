@@ -1,17 +1,33 @@
 import './rules.css';
 import commonFunctions from '../CommonFunctions';
 
-const Rules = () => {
-
+const Rules = ({name, setNameCallback, toggleShowMessageBoxCallback}) => {
     const handlePlayButton = () => {
         commonFunctions.playAudioToggleSound();
         var element = document.getElementById("rules");
-        element.style.display = 'none';
+        if (name !== '') {
+            var element = document.getElementById("rules");
+            element.style.display = 'none';
+        } else {
+            document.getElementById("rules-play-button").disabled = true;
+            toggleShowMessageBoxCallback({
+                "Please Enter Your Name": {
+                    "OKAY": () => {
+                        document.getElementById("rules-play-button").disabled = false;
+                        toggleShowMessageBoxCallback({})
+                    }
+                }    
+            })
+        }
     }
 
     return (
         <div className='rules-container'>
             <div className = 'rules'>
+                <input type="text" id="fname" name="fname" className='name-input' placeholder='Enter you name ...'
+                    value={name} 
+                    onChange={evt => setNameCallback(evt.target.value)}
+                />
                 <div className='heading'>HOW TO PLAY</div>
                 <ul className='rules-text'>
                     <li>Click on <img alt = "N" className = 'rules-img' src = '/images/dice/n.png'/> in the top header to start the game.</li>
@@ -32,7 +48,7 @@ const Rules = () => {
                     <li>Your goal is to reach <img alt = "Finish Gif" className = 'rules-img' src = '/images/finish.gif' /></li>
                 </ul>
             </div>
-            <button className='play-button' onClick={handlePlayButton}>PLAY</button>
+            <button id = 'rules-play-button' className='play-button' onClick={handlePlayButton}>PLAY</button>
         </div>
     )
 }
