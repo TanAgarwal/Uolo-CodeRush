@@ -11,10 +11,13 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   align-items: center;
   font-size: calc(1vh + 2vmin);
   color: white;
+  background-image: url('../public/images/back.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
 }
 
 .dice {

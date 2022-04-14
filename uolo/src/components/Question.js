@@ -19,6 +19,9 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [nextQuestion, setNextQuestion] = useState(false);
     const [buttondisabled, setButtonDisabled] = useState(false);
+    const [answerClicked, setAnswerClicked] = useState(false);
+    const [answerSelected, setAnswerSelected] = useState(false);
+    console.log(answerClicked);
 
     useEffect(() => {
         if(nextQuestion){
@@ -52,8 +55,11 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                     currentQuestion = 0;
                     setDiceCallback(true);
                 }
+                setAnswerClicked(false);
+                setAnswerSelected(false);
+                console.log(currentQuestion);
+                console.log("here:"+askQuestionCtx.askNewQuestion(askQuestionCtx.question - 1));
                 currentQuestion += 1;
-                askQuestionCtx.askNewQuestion(askQuestionCtx.question - 1);
             },2000);
         setNextQuestion(false);
     }}, [nextQuestion]);
@@ -73,6 +79,10 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
             }
             setStyleButton('game-button red');
         }
+        setAnswerClicked(true)
+        setTimeout(() => {
+            setAnswerSelected(true);
+        },500)
     }
 
     return (
@@ -82,13 +92,13 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                     <div className='question-number'>
                         <span>Question {currentQuestion}</span>/{numberOfQuestion}
                     </div>
-                    <div className='timer'> <Timer setNextQuestion={setNextQuestion} selectedAnswer={selectedAnswer} question={question} audioOn={audioOn}/> </div>
+                    <div className='timer'> <Timer setNextQuestion={setNextQuestion} answerClicked={answerClicked} question={question} audioOn={audioOn}/> </div>
                 </div>
                 <div className='question-text'>{question}</div>
             </div>
             <div className='answer-section'>
                 {options.map((answerOption, index) => (
-                    <button key={index} disabled={buttondisabled} className={selectedAnswer === answerOption ? styleButton : 'game-button'} onClick = {() => answerClick(answerOption)}>{answerOption}</button>
+                    <button key={index} disabled={buttondisabled} className={selectedAnswer === answerOption ? styleButton : answerSelected ? answerOption === answer ? 'game-button green' : 'game-button' : 'game-button'} onClick = {() => answerClick(answerOption)}>{answerOption}</button>
                 ))}
             </div>
             { audioOn ? <TextToSpeech question={question}/> : null}

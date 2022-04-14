@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
-import './question.css'
+import './victory.css'
 import commonFunctions from '../CommonFunctions';
 
-const GameOver = ({ audioOn, showExitMessageBox }) =>{
+const Victory = ({ audioOn, showExitMessageBox }) =>{
 
 useEffect(() => {
     if(audioOn)
     {
-        commonFunctions.playGameOverSound();
+        commonFunctions.playVictorySound();
     }
 }, [])
 
@@ -27,12 +27,12 @@ return(
         </div>
         <div className='tag-line' >'Luck matched your GK'</div>
         <div className='buttons'>
-            <button className='game-button retry' onClick={handleClickReplay}>Replay</button>
-            <button className='game-button exit' onClick={showExitMessageBox}>Exit</button>
+            <button className='game-button retry' onClick={handleClickReplay}><i className="fa fa-repeat"/> Replay</button>
+            <button className='game-button exit' onClick={showExitMessageBox}><i className="fa fa-close"/>Exit</button>
         </div>
 
     </div>
 )
 }
 
-export default GameOver;
+export default Victory;
