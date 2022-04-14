@@ -1,8 +1,10 @@
 import './rules.css';
+import commonFunctions from '../CommonFunctions';
 
 const Rules = () => {
 
     const handlePlayButton = () => {
+        commonFunctions.playAudioToggleSound();
         var element = document.getElementById("rules");
         element.style.display = 'none';
     }

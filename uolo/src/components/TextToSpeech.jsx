@@ -6,7 +6,7 @@ const TextToSpeech = ({question}) => {
 
   async function speakQuestion()
   {
-      await speak({text:question});
+      await speak({text:"question"});
   }
   
   useEffect(() => {

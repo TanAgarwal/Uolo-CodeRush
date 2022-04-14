@@ -2,6 +2,7 @@ import Question from "../components/Question";
 import commonFunctions from '../CommonFunctions';
 
 let numberOfQuestions;
+let numberOfChances = 0;
 const AppControllerFunctions = {
     askQuestionHandler : (questionBag, setDiceCallback, setGameOver, audioOn, wormholes) => {
         return (
@@ -14,6 +15,7 @@ const AppControllerFunctions = {
             setGameOver = {(val) => setGameOver(val)}
             audioOn = {audioOn}
             wormholes = {wormholes}
+            numberOfChances = {numberOfChances}
             />
         )
       },
@@ -22,6 +24,7 @@ const AppControllerFunctions = {
         if(audioOn){
           commonFunctions.playDiceThrowSound();
         }
+        numberOfChances = numberOfChances + 1;
         const max = 6, min = 1;
         numberOfQuestions = Math.floor(Math.random() * (max - min + 1) + min);
         setAskQuestionCallBack(numberOfQuestions);
