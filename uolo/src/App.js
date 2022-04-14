@@ -251,8 +251,7 @@ function App () {
           {renderGrid()}
           {renderQuestion()}
           {renderGaveOverBox()}
-          {/* { win ? <Victory/> : null} */}
-          <Victory/>
+          { win ? <Victory/> : null}
         </div>
       </header>
     </div>
