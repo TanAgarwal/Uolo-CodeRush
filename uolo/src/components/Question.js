@@ -21,14 +21,13 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
     const [buttondisabled, setButtonDisabled] = useState(false);
     const [answerClicked, setAnswerClicked] = useState(false);
     const [answerSelected, setAnswerSelected] = useState(false);
-    console.log(answerClicked);
 
     useEffect(() => {
         if(nextQuestion){
             setButtonDisabled(true);
             setTimeout(()=>{
                 setButtonDisabled(false);
-                if (askQuestionCtx.question - 1 == 0) {
+                if (askQuestionCtx.question - 1 === 0) {
                     if(correctAnswer === 0) {
                         numberOfRetries += 1;
                         console.log(numberOfRetries)
