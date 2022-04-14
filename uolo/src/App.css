@@ -4,7 +4,7 @@
 }
 
 .grid {
-  padding: 10px;
+  padding: 0.5vh;
 }
 
 .App-header {
@@ -13,19 +13,19 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(1vh + 2vmin);
   color: white;
 }
 
 .dice {
   display: flex;
-  width: 100px;
-  height: 100px;
-  border-radius: 20px;
+  width: 5.5vw;
+  height: 9.5vh;
+  border-radius: 2vh;
   align-items:center;
   margin: auto;
-  margin-top: 12px;
-  margin-right: 35px;
+  margin-top: 1.2vh;
+  margin-right: 3.5vh;
   justify-content:center;
 }
 
@@ -59,11 +59,10 @@
 .swingimage{
   display: flex;
   flex-direction: row;
-  margin-top: 0px;
-  margin-bottom: 50px;
+  margin-top: 0vh;
   text-align: center;
-  margin-bottom: 50px;
-  margin-top: 15px;
+  margin-bottom: 5vh;
+  margin-top: 1.5vh;
   -webkit-transform-origin: 50% 0;
   transform-origin: 50% 0;
   -webkit-animation: swinging 3.5s ease-in-out forwards infinite;
@@ -72,36 +71,35 @@
 
 .rainbowText {
   font-family: 'Rubik Moonrocks', cursive;
-  font-size: 3rem;
   letter-spacing: 0.15rem;
   text-transform: uppercase;
   color: #fff;
-  text-shadow: -4px 4px #ef3550,
-                -8px 8px #f48fb1,
-                -12px 12px #7e57c2,
-                -16px 16px #2196f3,
-                -20px 20px #26c6da,
-                -24px 24px #43a047,
-                -28px 28px #eeff41,
-                -32px 32px #f9a825,
-                -36px 36px #ff5722;
-  font-size: 80px;
+  text-shadow: -0.4vh 0.4vh #ef3550,
+                -0.8vh 0.8vh #f48fb1,
+                -1.2vh 1.2vh #7e57c2,
+                -1.6vh 1.6vh #2196f3,
+                -2vh 2vh #26c6da,
+                -2.4vh 2.4vh #43a047,
+                -2.8vh 2.8vh #eeff41,
+                -3.2vh 3.2vh #f9a825,
+                -3.6vh 3.6vh #ff5722;
+  font-size: 8vh;
 }
 
 .dice-with-letter-n {
   display: flex;
-  width: 100px;
-  height: 100px;
-  border-radius: 20px;
+  width: 5.5vw;
+  height: 9.5vh;
+  border-radius: 2vh;
   align-items:center;
   margin: auto;
-  margin-top: 12px;
-  margin-right: 35px;
+  margin-top: 1.2vh;
+  margin-right: 3.5vh;
   justify-content:center;
   animation: shake 1s both infinite;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
-  perspective: 1000px;
+  perspective: 100vh;
 }
 
 @keyframes shake {
@@ -151,9 +149,21 @@
   top: 5%;
 }
 
+.help-button {
+  width: 5vw;
+  height: 6.9vh;
+  position: absolute;
+  right: 10%;
+  top: 5%;
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-animation: swinging 3.5s ease-in-out forwards infinite;
+  animation: swinging 3.5s ease-in-out forwards infinite;
+}
+
 .exit-button {
-  width: 70px;
-  height: 70px;
+  width: 5vw;
+  height: 6.9vh;
   position: absolute;
   right: 5%;
   top: 5%;

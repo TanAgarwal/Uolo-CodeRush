@@ -26,11 +26,10 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
             setTimeout(()=>{
                 setButtonDisabled(false);
                 if (askQuestionCtx.question - 1 == 0) {
-                    if(correctAnswer === 0)
-                    {
+                    if(correctAnswer === 0) {
                         numberOfRetries += 1;
                         console.log(numberOfRetries)
-                        if(numberOfRetries === 1 ){
+                        if(numberOfRetries === 3){
                             setGameOver(true);
                         }
                     }

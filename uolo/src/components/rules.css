@@ -1,84 +1,75 @@
 .rules-container {
     position: absolute;
     z-index: 2;
-    margin: 0px;
+    margin: 0vh;
     top: 0%;
     left: 0%;
 }
 
-.rainbowTextRules {
-    position: absolute;
-    left: 30%;
-    font-family: 'Rubik Moonrocks', cursive;
-    font-size: 3rem;
-    letter-spacing: 0.15rem;
-    text-transform: uppercase;
-    color: #fff;
-    text-shadow: -4px 4px #ef3550,
-                  -8px 8px #f48fb1,
-                  -12px 12px #7e57c2,
-                  -16px 16px #2196f3,
-                  -20px 20px #26c6da,
-                  -24px 24px #43a047,
-                  -28px 28px #eeff41,
-                  -32px 32px #f9a825,
-                  -36px 36px #ff5722;
-    font-size: 80px;
-  }
-
 .rules {
-    background-image: url('../../public/images/frame.png');
+    background-image: url('../../public/images/frame1.jpg');
     background-repeat: no-repeat;
-    height: 1205px;
-    width: 1795px;
+    height: 120.5vh;
+    width: 100vw;
     background-size: cover;
 }
 
 .heading {
     position: absolute;
-    top: 25%;
-    left: 60%;
+    top: 12%;
+    font-family: 'Lobster Two', cursive;
+    left: 50%;
     color: red;
-    font-size: 40px;
+    font-size: 7vh;
+}
+
+.rules-img {
+  height: 3vh;
+  width: 2.1vw;
 }
 
 .rules-text {
-    color: red;
+    color: white;
     position: absolute;
     font-family: 'Lobster Two', cursive;
-    top: 25%;
+    border: dashed 0.1vh white;
+    border-radius: 1vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    width: 98vh;
+    top: 17%;
     left: 40%;
-    font-size: 30px;
+    font-size: 3vh;
 }
 
 .play-button {
-    border: solid 2px rgba(0,0,0,0.15);
-    border-radius: 10px;
+    border: solid 0.2vh rgba(0,0,0,0.15);
+    border-radius: 1vh;
     position: absolute;
-    top: 60%;
-    left: 60%;
+    top: 73%;
+    left: 63%;
     background-color: chocolate;
     font-family: 'Special Elite', cursive;
-    box-shadow: 5px 10px brown;
-    font-size: 60px;
-    padding: 10px;
+    box-shadow: 0.5vh 1vh brown;
+    font-size: 5.5vh;
+    padding: 1vh;
 }
 
 .play-button:hover {
-    border: solid 2px rgba(0,0,0,0.15);
-    border-radius: 10px;
+    border: solid 0.2vh rgba(0,0,0,0.15);
+    border-radius: 1vh;
     position: absolute;
-    top: 60%;
-    left: 60%;
+    top: 73%;
+    left: 63%;
     background-color: chocolate;
     font-family: 'Special Elite', cursive;
-    box-shadow: 5px 10px brown;
-    font-size: 60px;
-    padding: 10px;
+    box-shadow: 0.5vh 1vh brown;
+    font-size: 5.5vh;
+    padding: 1vh;
     animation: shake 1s both;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
-    perspective: 1000px;
+    perspective: 100vh;
   }
   
   @keyframes shake {
@@ -99,10 +90,47 @@
     }
   }
 
-.swingimageRules {
-    margin: 0px;
-    -webkit-transform-origin: 50% 0;
-    transform-origin: 50% 0;
-    -webkit-animation: swinging 3.5s ease-in-out forwards infinite;
-    animation: swinging 3.5s ease-in-out forwards infinite;
+  .rotate-rules-img {
+    width: 3vh;
+    height: 1.7vw;
+    overflow: hidden;
+    animation: rotationImg 2s infinite linear;
+}
+
+@keyframes rotationImg {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
+
+.fade-out {
+  position: absolute;
+  z-index: 2;
+  margin: 0vh;
+  top: 0%;
+  left: 0%;
+  -webkit-animation: fadeInFromNone 0.5s ease-out;
+  -moz-animation: fadeInFromNone 0.5s ease-out;
+  -o-animation: fadeInFromNone 0.5s ease-out;
+  animation: fadeInFromNone 0.5s ease-out;
+}
+
+@keyframes fadeInFromNone {
+  0% {
+      display: block;
+      opacity: 1;
   }
+
+  1% {
+      display: block;
+      opacity: 1;
+  }
+
+  100% {
+      display: none;
+      opacity: 0;
+  }
+}
