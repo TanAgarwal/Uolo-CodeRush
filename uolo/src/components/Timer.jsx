@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import commonFunctions from '../CommonFunctions';
 
-const Timer = ({setNextQuestion, selectedAnswer, question, audioOn}) => {
+const Timer = ({setNextQuestion, answerClicked, question, audioOn}) => {
     const [timer, setTimer] = useState(10);
 
     useEffect(() => {
         if(timer === 0)
         {
-            if(audioOn && (selectedAnswer === null)){
+            if(audioOn && (!answerClicked)){
             console.log("came");
             commonFunctions.playTimeUpSound();
             }
@@ -17,7 +17,7 @@ const Timer = ({setNextQuestion, selectedAnswer, question, audioOn}) => {
             setTimer((prev) => prev-1);
         }, 1000);
         return () => clearInterval(interval);
-    }, [setNextQuestion, timer, selectedAnswer]);
+    }, [setNextQuestion, timer]);
 
     useEffect(() => {
         setTimer(10)

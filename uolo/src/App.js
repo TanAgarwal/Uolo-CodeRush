@@ -9,6 +9,7 @@ import commonFunctions from './CommonFunctions';
 import MessageBox from './components/MessageBoxComponent';
 import GameOver from './components/GameOver';
 import Rules from './components/rulesComponent';
+import Victory from './components/Victory';
 
 let mainQuestionBag = [];
 const diceArray = [
@@ -47,6 +48,7 @@ function App () {
   const [audioOn, setAudioOn] = useState(true);
   const [showMessageBox, toggleShowMessageBox] = useState({});
   const [gameOver, setGameOver] = useState(false);
+  const [win, setWin] = useState(false);
 
   async function fetchQuestions(category) {
     await fetch(`https://opentdb.com/api.php?amount=50&category=${category}&difficulty=easy&type=multiple`)
@@ -112,6 +114,7 @@ function App () {
   }
 
   const renderQuestion = () => {
+    console.log("came to app.js");
     if (askQuestionCtx.question !== 0) {
       return (
         AppControllerFunctions.askQuestionHandler(
@@ -230,7 +233,10 @@ function App () {
       });
     }
   }
-
+  if(pawnCtx.index === 100)
+  {
+    setWin(true);
+  }
   /**************** MAIN RETURN FUNCTION ****************/
   return (
     <div>
@@ -245,6 +251,8 @@ function App () {
           {renderGrid()}
           {renderQuestion()}
           {renderGaveOverBox()}
+          {/* { win ? <Victory/> : null} */}
+          <Victory/>
         </div>
       </header>
     </div>

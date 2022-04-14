@@ -41,9 +41,12 @@ const commonFunctions = {
     },
 
     playGameOverSound : () => {
-        console.log("called");
         SoundPlay('/audio/Game_Over_Sound_Affect.mp3');
     },
+
+    playVictorySound : () => {
+        SoundPlay('/audio/Victory_sound_effect.mp3');
+    }
 
 }
 
