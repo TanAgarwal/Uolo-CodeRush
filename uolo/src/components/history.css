@@ -19,7 +19,7 @@
 }
 
 .table-container {
-    max-height: 59vh;
+    max-height: 55vh;
     overflow: scroll;
 }
 
@@ -31,12 +31,12 @@ table {
 	vertical-align: middle;
 }
 
-caption {
+.caption {
     font-weight: bold;
     font-size: 5vh;
     text-align: center;
+    padding: 1vh;
     color: #333;
-    margin-top: 1vh;
     font-family: 'Bangers', cursive;
     margin-bottom: 1vh;
 }

@@ -4,7 +4,6 @@ import commonFunctions from '../CommonFunctions';
 const Rules = ({name, setNameCallback, toggleShowMessageBoxCallback}) => {
     const handlePlayButton = () => {
         commonFunctions.playAudioToggleSound();
-        var element = document.getElementById("rules");
         if (name !== '') {
             var element = document.getElementById("rules");
             element.style.display = 'none';
