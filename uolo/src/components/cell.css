@@ -1,9 +1,9 @@
 .cell {
     display: flex;
-    width: 90px;
-    height: 70px;
-    border: 3px solid brown;
-    border-radius: 5px;
+    width: 5vw;
+    height: 6.9vh;
+    border: 0.17vw solid brown;
+    border-radius: 0.2vw;
     color: red;
     margin: auto;
     align-items:center;
@@ -13,10 +13,10 @@
 
 .cell:hover {
   display: flex;
-  width: 90px;
-  height: 70px;
-  border: 3px solid brown;
-  border-radius: 5px;
+  width: 5vw;
+  height: 6.9vh;
+  border: 0.17vw solid brown;
+  border-radius: 0.2vw;
   color: red;
   margin: auto;
   align-items:center;
@@ -25,7 +25,7 @@
   animation: shake 1s both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
-  perspective: 1000px;
+  perspective: 100vh;
 }
   
 @keyframes shake {
@@ -50,9 +50,14 @@ img {
     border-radius: 50%;
 }
 
+.wormhole {
+  width: 4.1vw;
+  height: 7.1vh;
+}
+
 .rotate {
-    width: 70px;
-    height: 70px;
+    width: 4.1vw;
+    height: 7.1vh;
     overflow: hidden;
     animation: rotation 2s infinite linear;
 }
@@ -64,4 +69,36 @@ img {
     to {
       transform: rotate(360deg);
     }
+}
+
+.finish {
+    display: flex;
+    background-image: url('../../public/images/finish.gif');
+    width: 5vw;
+    height: 6.9vh;
+    border: 0.17vw solid brown;
+    border-radius: 0.2vw;
+    color: red;
+    margin: auto;
+    align-items:center;
+    justify-content:center;
+    font-family: 'Bangers', cursive;
+}
+
+.finish:hover {
+  display: flex;
+    background-image: url('../../public/images/finish.gif');
+    width: 5vw;
+    height: 6.9vh;
+    border: 0.17vw solid brown;
+    border-radius: 0.2vw;
+    color: red;
+    margin: auto;
+    align-items:center;
+    justify-content:center;
+    font-family: 'Bangers', cursive;
+    animation: shake 1s both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 100vh;
 }

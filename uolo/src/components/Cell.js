@@ -5,17 +5,22 @@ const Cell = ({index, wormholes}) => {
         if (wormholes[index] < index) {
             return (
                 <div id = {index} className = 'cell'>
-                    <div className='rotate'><img src="images/bad-wormhole.jpeg" width="70" height="70" /></div>
+                    <div className='rotate'><img alt = "Bad Wormhole" className = 'wormhole' src="images/bad-wormhole.jpeg" /></div>
                 </div>
             )
         } else {
             return (
                 <div id = {index} className = 'cell'>
-                    <div className='rotate'><img src="images/good-wormhole.jpeg" width="70" height="70" /></div>
+                    <div className='rotate'><img alt = "Good Wormhole" className = 'wormhole' src="images/good-wormhole.jpeg" /></div>
                 </div>
             )
         }
-    } else {
+    } else if (index === 100) {
+        return (
+            <div id = {index} className = 'finish' />
+        )
+    } 
+    else {
         return (
             <div id = {index} className = 'cell' > {index} </div>
         )

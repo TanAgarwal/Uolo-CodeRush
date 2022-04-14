@@ -21,13 +21,13 @@ const pawnOrientation = (index) => {
     } else if ([51, 52, 53, 54, 55, 56, 57, 58, 59, 60].includes(index)) {
         return 'pawn2-left';
     } else if ([61, 62, 63, 64, 65, 66, 67, 68, 69, 70].includes(index)) {
-        return 'pawn-right';
+        return 'pawn3-right';
     } else if ([71, 72, 73, 74, 75, 76, 77, 78, 79, 80].includes(index)) {
-        return 'pawn-left';
+        return 'pawn3-left';
     } else if ([81, 82, 83, 84, 85, 86, 87, 88, 89, 90].includes(index)) {
-        return 'pawn-right';
+        return 'pawn4-right';
     } else if ([91, 92, 93, 94, 95, 96, 97, 98, 99, 100].includes(index)) {
-        return 'pawn-left';
+        return 'pawn4-left';
     }
 }
 
@@ -39,7 +39,6 @@ export const PawnContextProvider = props => {
         pawnDiv.innerHTML = `<div id = ${oldIndex} > ${oldIndex} </div>`;
         pawnDiv = document.getElementById(newIndex);
         pawnDiv.innerHTML = `<div id = ${newIndex} class = ${pawnOrientation(newIndex)} />`;
-        console.log(pawnDiv);
         if (newIndex !== oldIndex) {
             commonFunctions.playPawnMoveSound();
         }

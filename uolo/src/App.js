@@ -9,7 +9,6 @@ import commonFunctions from './CommonFunctions';
 import MessageBox from './components/MessageBoxComponent';
 import GameOver from './components/GameOver';
 import Rules from './components/rulesComponent';
-import Congratulations from './components/Congratulations';
 
 let mainQuestionBag = [];
 const diceArray = [
@@ -23,11 +22,19 @@ const diceArray = [
 ];
 
 const wormholes = {
-  3: 14,
-  78: 39,
-  69: 88,
-  99: 10,
-  25: 45
+  4: 14,
+  9: 31,
+  20: 38,
+  29: 84,
+  40: 59,
+  63: 81,
+  71: 91,
+  17: 7,
+  60: 18,
+  68: 49,
+  87: 24,
+  93: 73,
+  99: 46
 }
 
 const questionCategory = [9, 27, 19, 18, 22, 10, 17]
@@ -49,23 +56,25 @@ function App () {
             return {
               question: question.question, 
               answer: question.correct_answer,
-              status: 1,
               options: question.incorrect_answers
             }
           })
           mainQuestionBag = questionArray;
-          
+          mainQuestionBag = mainQuestionBag.filter(question => !question.question.includes(';') && !question.answer.includes(';'));
         })
       setShowDice(true);
   }
 
   useEffect(() => {
     pawnCtx.setNewPawnPosition(1, pawnCtx.index); 
-    fetchQuestions(9)
+    fetchQuestions(9);
   }, []);
-
-  if (mainQuestionBag === 0) {
-    fetchQuestions(questionCategory[0]);
+  
+  if (mainQuestionBag.length <= 6) {
+    async function getQuestion () {
+      await fetchQuestions(questionCategory[0]);
+    }
+    getQuestion();
     questionCategory.shift();
   }
 
@@ -75,7 +84,7 @@ function App () {
     if (showDice) {
       if (diceCtx.number === 7) {
         return (
-          <input className = 'dice-with-letter-n' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} 
+          <input alt = "N And Dice" className = 'dice-with-letter-n' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} 
             onClick = {() => AppControllerFunctions.rollDice(
               (val) => askQuestionCtx.askNewQuestion(val), 
               (val) => setShowDice(val),
@@ -85,7 +94,7 @@ function App () {
         )
       }
       return (
-        <input className = 'dice' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} 
+        <input alt = "Dice" className = 'dice' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} 
           onClick = {() => AppControllerFunctions.rollDice(
             (val) => askQuestionCtx.askNewQuestion(val), 
             (val) => setShowDice(val),
@@ -95,7 +104,7 @@ function App () {
              />
       );
     }
-    return <input className = 'dice' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} />;
+    return <input alt = "Dice" className = 'dice' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} />;
   }
 
   const renderGrid = () => {
@@ -103,7 +112,7 @@ function App () {
   }
 
   const renderQuestion = () => {
-    if (askQuestionCtx.question != 0) {
+    if (askQuestionCtx.question !== 0) {
       return (
         AppControllerFunctions.askQuestionHandler(
           mainQuestionBag.splice(0, 1), 
@@ -116,6 +125,69 @@ function App () {
     }
   }
 
+  const renderRules = () => {
+    return (
+      <div id = 'rules'><Rules /></div>
+    )
+  }
+
+  const renderGameHeading = () => {
+    return (
+        <div className='swingimage'>
+          <div className='rainbowText'>GK</div> <div>{renderDice()}</div><div className='rainbowText'> LUCK</div>
+        </div>
+    )
+  }
+
+  const renderMuteButton = () => {
+    return (
+      <div className='mic' onClick={toggleAudio}>
+          { audioOn ? <img alt = "Mute" src='/images/pngwing.com.png'/> : <img alt = "Unmute" src='/images/mute.png'/>}
+        </div>
+    )
+  }
+
+  const renderHelpButton = () => {
+    return (
+      <div onClick = {() => {
+        var element = document.getElementById("rules");
+        element.style.display = "block";
+      }}> 
+        <img alt = "Help Button" className = 'help-button' src = '/images/help.png' /> 
+      </div>
+    )
+  }
+
+  const renderExitButton = () => {
+    return (
+      <div onClick = {showExitMessageBox}> 
+        <img alt = "Exit Button" className = 'exit-button' src = '/images/exit.png' /> 
+      </div>
+    )
+  }
+
+  const renderMessageBox = () => {
+    if (Object.keys(showMessageBox).length !== 0) {
+      return (
+        <MessageBox 
+          msg = {Object.keys(showMessageBox)[0]}
+          options = {Object.values(showMessageBox)[0]}
+          setShowDiceCallback = {(val) => setShowDice(val)}
+        />
+      )
+    }
+  }
+
+  const renderGaveOverBox = () => {
+    if (gameOver) {
+      return (
+        <GameOver audioOn={audioOn} showExitMessageBox={showExitMessageBox}/>
+      )
+    }
+  }
+
+  /**************** LOGICAL FUNCTIONS ****************/
+
   const toggleAudio = () =>{
     if(!gameOver){
     commonFunctions.playAudioToggleSound();
@@ -123,9 +195,7 @@ function App () {
     }
   }
 
-  const backButton = () => {
-
-  }
+  const backButton = () => {}
 
   const showBackButtonMessageBox = () => {
     toggleShowMessageBox({
@@ -161,36 +231,20 @@ function App () {
     }
   }
 
-  const play = () => {
-    let div = document.getElementById('header');
-    // div.classList.remove('App-header banner');
-    div.className = "App-header banner-play-button";
-  }
-
   /**************** MAIN RETURN FUNCTION ****************/
   return (
     <div>
-      <div id = 'rules'><Rules /></div>
+      {renderRules()}
       <header id = "header" className="App-header">
-        <div className='swingimage'>
-          <div className='rainbowText'>GK</div> <div>{renderDice()}</div><div className='rainbowText'> LUCK</div>
-        </div>
-        <div className='mic' onClick={toggleAudio}>
-          { audioOn ? <img src='/images/pngwing.com.png'/> : <img src='/images/mute.png'/>}
-        </div>
-        <div onClick = {showExitMessageBox}> <img className = 'exit-button' src = '/images/exit.png' /> </div>
-        
-        {Object.keys(showMessageBox).length !== 0 ? 
-          <MessageBox 
-            msg = {Object.keys(showMessageBox)[0]}
-            options = {Object.values(showMessageBox)[0]}
-          /> : null}
-        
+        {renderGameHeading()}
+        {renderMuteButton()}
+        {renderHelpButton()}
+        {renderExitButton()}
+        {renderMessageBox()}
         <div className = 'dice-n-grid'> 
           {renderGrid()}
           {renderQuestion()}
-          { gameOver ? <GameOver audioOn={audioOn} showExitMessageBox={showExitMessageBox}/> : null}
-          {/* <Congratulations/> */}
+          {renderGaveOverBox()}
         </div>
       </header>
     </div>
