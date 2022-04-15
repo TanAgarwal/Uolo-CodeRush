@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import './history.css';
 import commonFunctions from '../CommonFunctions';
 
-const History = ({audioOn}) => {
+const History = ({audioOn, setShowHistoryCallback}) => {
     const [score, scoreFetch] = useState([]);
+
     useEffect(() => {
         fetch(`${process.env.REACT_APP_UOLO_CODERUSH_API_BASE_URL}`,{
             method: 'GET'
@@ -61,8 +62,7 @@ const History = ({audioOn}) => {
                         if (audioOn) {
                             commonFunctions.playAudioToggleSound()
                         }
-                        var element = document.getElementById("history");
-                        element.style.display = 'none';
+                        setShowHistoryCallback(false);
                     }}>BACK</button>
                 </div>
             </div>

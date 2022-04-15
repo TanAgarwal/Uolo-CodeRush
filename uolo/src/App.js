@@ -51,6 +51,7 @@ function App () {
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
   const [name, setName] = useState('');
+  const [showHistory, setShowHistory] = useState(false);
 
   async function fetchQuestions(category) {
     await fetch(`https://opentdb.com/api.php?amount=50&category=${category}&difficulty=easy&type=multiple`)
@@ -126,7 +127,8 @@ function App () {
           audioOn,
           wormholes,
           (val) => toggleShowMessageBox(val),
-          name
+          name,
+          (val) => setShowHistory(val)
           )
       );
     }
@@ -207,9 +209,11 @@ function App () {
   }
 
   const renderScoreBoard = () => {
-    return (
-      <History audioOn = {audioOn} />
-    )
+    if (showHistory) {
+      return (
+        <History audioOn = {audioOn} setShowHistoryCallback = {(val) => setShowHistory(val)} />
+      )
+    }
   }
 
   const renderScoreBoardButton = () => {
@@ -218,8 +222,8 @@ function App () {
         if (audioOn) {
           commonFunctions.playAudioToggleSound()
         }
-        var element = document.getElementById("history");
-        element.style.display = "block";
+        console.log(showHistory);
+        setShowHistory(true);
       }}> 
         <img alt = "Score Board Button" className = 'score-board-button' src = '/images/history-icon.png' /> 
       </div>
