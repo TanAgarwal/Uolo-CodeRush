@@ -13,10 +13,10 @@ const Timer = ({setNextQuestion, answerClicked, question, audioOn}) => {
             console.log("came");
             commonFunctions.playTimeUpSound();
             }
-            if(askQuestionCtx.question - 1 > 0){
-                console.log("coming here");
+            // if(askQuestionCtx.question - 1 > 0){
+            //     console.log("coming here");
                 return setNextQuestion(true);
-            }
+            //}
         }
         const interval = setInterval(()=>{
             setTimer((prev) => prev-1);

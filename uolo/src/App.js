@@ -57,7 +57,7 @@ function App () {
   const [muteButton, setMuteButton] = useState(true);
   
   async function fetchQuestions(category) {
-    await fetch(`https://opentdb.com/api.php?amount=10&${category}=9&difficulty=easy&type=multiple&encode=url3986`)
+    await fetch(`https://opentdb.com/api.php?amount=50&category=${category}&difficulty=easy&type=multiple&encode=url3986`)
       .then(response => response.json())
         .then(data => {
           const questionArray = data.results.map(function(question) {
@@ -83,6 +83,28 @@ function App () {
       questionCategory.shift();
     }
   }, [mainQuestionBag.length <= 6 && mainQuestionBag.length != 0]);
+
+  useEffect(() => {
+    //const postHistory = () =>{
+      console.log(numberOfChances);
+      if(numberOfChances !== 0){
+      fetch(process.env.REACT_APP_UOLO_CODERUSH_API_BASE_URL,{
+          method: 'POST',
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({name: name, numberOfChances: numberOfChances})
+      }).then(() => {
+          console.log("entry added");
+      })
+    }
+  //}
+  }, [win]);
+
+  if(pawnCtx.index === 100) {
+    console.log(numberOfChances);
+    setWin(true);
+    pawnCtx.index = 0;
+    //postHistory();
+  }
 
   const rollDice = () => {
     if(audioOn){
@@ -147,7 +169,6 @@ function App () {
             numberOfChances = {numberOfChances}
             toggleShowMessageBoxCallback = {(val) => toggleShowMessageBox(val)}
             name = {name}
-            win = {win}
             setMuteButton = {(val) => setMuteButton(val)}
             />
       );
@@ -290,9 +311,7 @@ function App () {
       });
     }
   }
-  if(pawnCtx.index === 100) {
-    setWin(true);
-  }
+  
   /**************** MAIN RETURN FUNCTION ****************/
   return (
     <div>
