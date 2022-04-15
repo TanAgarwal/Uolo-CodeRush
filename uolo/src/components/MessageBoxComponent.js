@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 const createOptions = (value, key, setShowDiceCallback) => {
     return (
         <button key = {key} className = 'messageBoxOptions' onClick={
@@ -17,7 +19,10 @@ const renderOptions = (option, setShowDiceCallback) => {
 }
 
 const MessageBox = ({msg, options, setShowDiceCallback}) => {
-    setShowDiceCallback(false);
+    useEffect(() => {
+        setShowDiceCallback(false);
+    }, [])
+
     return (
         <div className="messageBox">
             <div className="messageBoxText">{msg}</div>

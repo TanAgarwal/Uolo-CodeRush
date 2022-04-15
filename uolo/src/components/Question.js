@@ -75,7 +75,7 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
         if (numberOfRetries < 3) {
             showWarningMessage()
         }
-        if(numberOfRetries === 1){
+        if(numberOfRetries === 3){
             setGameOver(true);
         }
     }
