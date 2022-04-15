@@ -22,6 +22,61 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
     const [answerClicked, setAnswerClicked] = useState(false);
     const [answerSelected, setAnswerSelected] = useState(false);
 
+    const showWarningMessage = () => {
+        toggleShowMessageBoxCallback({
+            "You have not given any correct answer!" : {
+              "OKAY" : () => {
+                    if (audioOn) {
+                        commonFunctions.playAudioToggleSound()
+                    }
+                    toggleShowMessageBoxCallback({})
+                }
+            }
+        });
+    }
+
+    const showCannotMoveMessage = () => {
+        toggleShowMessageBoxCallback({
+            "You can not take these many steps!" : {
+              "OKAY" : () => {
+                    if (audioOn) {
+                        commonFunctions.playAudioToggleSound()
+                    }
+                    toggleShowMessageBoxCallback({})
+                }
+            }
+        });
+    }
+
+    const movePawn = () => {
+        let newPosition = pawnCtx.index + correctAnswer;
+        if ((pawnCtx.index + correctAnswer) in wormholes) {
+            if (wormholes[pawnCtx.index + correctAnswer] > pawnCtx.index + correctAnswer) {
+                if (audioOn) {
+                    commonFunctions.playGoodWormholeSound();
+                }
+                newPosition = wormholes[pawnCtx.index + correctAnswer];
+            } else {
+                if (audioOn) {
+                    commonFunctions.playBadWormholeSound();
+                }
+                newPosition = wormholes[pawnCtx.index + correctAnswer];
+            }
+        }
+        pawnCtx.setNewPawnPosition(pawnCtx.index, newPosition, audioOn);
+        correctAnswer = 0;
+    }
+
+    const handleNoCorrectAnswer = () => {
+        numberOfRetries += 1;
+        if (numberOfRetries < 3) {
+            showWarningMessage()
+        }
+        if(numberOfRetries === 3){
+            setGameOver(true);
+        }
+    }
+
     useEffect(() => {
         if(nextQuestion){
             setButtonDisabled(true);
@@ -29,42 +84,18 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                 setButtonDisabled(false);
                 if (askQuestionCtx.question - 1 === 0) {
                     if(correctAnswer === 0) {
-                        numberOfRetries += 1;
-                        console.log(numberOfRetries)
-                        if (numberOfRetries < 3) {
-                            toggleShowMessageBoxCallback({
-                                "You have not given any correct answer!" : {
-                                  "OKAY" : () => toggleShowMessageBoxCallback({})
-                                }
-                              });
-                        }
-                        if(numberOfRetries === 3){
-                            setGameOver(true);
-                        }
+                        handleNoCorrectAnswer();
                     }
                     if (pawnCtx.index + correctAnswer <= 100) {
-                        let newPosition = pawnCtx.index + correctAnswer;
-                        if ((pawnCtx.index + correctAnswer) in wormholes) {
-                            if (wormholes[pawnCtx.index + correctAnswer] > pawnCtx.index + correctAnswer) {
-                                commonFunctions.playGoodWormholeSound();
-                                newPosition = wormholes[pawnCtx.index + correctAnswer];
-                            } else {
-                                commonFunctions.playBadWormholeSound();
-                                newPosition = wormholes[pawnCtx.index + correctAnswer];
-                            }
-                        }
-                        pawnCtx.setNewPawnPosition(pawnCtx.index, newPosition);
-                        correctAnswer = 0;
+                        movePawn()
                     } else {
-                        // TODO: Show Message that you can't move these many turns
+                        showCannotMoveMessage()
                     }
                     currentQuestion = 0;
                     setDiceCallback(true);
                 }
                 setAnswerClicked(false);
                 setAnswerSelected(false);
-                console.log(currentQuestion);
-                console.log("here:");
                 askQuestionCtx.askNewQuestion(askQuestionCtx.question - 1)
                 currentQuestion += 1;
             },2000);

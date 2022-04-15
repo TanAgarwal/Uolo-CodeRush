@@ -4,7 +4,7 @@ import '../pawn.css';
 
 const PawnContext = createContext({ 
     index: 1,
-    setNewPawnPosition: (oldIndex, newIndex) => {}
+    setNewPawnPosition: (oldIndex, newIndex, audioOn) => {}
 }); 
 
 const pawnOrientation = (index) => {
@@ -34,12 +34,12 @@ const pawnOrientation = (index) => {
 export const PawnContextProvider = props => {
     const [pawnPosition, setPawnPosition] = useState(1);
     
-    const setNewPawnPosition = (oldIndex, newIndex) => {
+    const setNewPawnPosition = (oldIndex, newIndex, audioOn) => {
         let pawnDiv = document.getElementById(oldIndex);
         pawnDiv.innerHTML = `<div id = ${oldIndex} > ${oldIndex} </div>`;
         pawnDiv = document.getElementById(newIndex);
         pawnDiv.innerHTML = `<div id = ${newIndex} class = ${pawnOrientation(newIndex)} />`;
-        if (newIndex !== oldIndex) {
+        if (newIndex !== oldIndex && audioOn) {
             commonFunctions.playPawnMoveSound();
         }
         setPawnPosition(newIndex);

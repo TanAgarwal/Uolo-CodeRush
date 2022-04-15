@@ -13,6 +13,7 @@ const Rules = ({name, setNameCallback, toggleShowMessageBoxCallback}) => {
                 "Please Enter Your Name": {
                     "OKAY": () => {
                         document.getElementById("rules-play-button").disabled = false;
+                        commonFunctions.playAudioToggleSound();
                         toggleShowMessageBoxCallback({})
                     }
                 }    

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import './history.css';
+import commonFunctions from '../CommonFunctions';
 
-const History = () => {
+const History = ({audioOn}) => {
     const [score, scoreFetch] = useState([]);
     useEffect(() => {
         fetch(`${process.env.REACT_APP_UOLO_CODERUSH_API_BASE_URL}`,{
@@ -30,6 +31,14 @@ const History = () => {
         return rowData;
     }
 
+    const renderNoDataString = () => {
+        if (score.length === 0) {
+            return (
+                <div className='no-data-string'>Oops! No Data Found ...</div>
+            )
+        }
+    }
+
     return (
         <div id = "history" className="history-container">
             <div className='blur-container'>
@@ -46,8 +55,12 @@ const History = () => {
                         </tbody>
                     </table>
                 </div>
+                {renderNoDataString()}
                 <div className='button-container'>
                     <button className='back-button' onClick = {() => {
+                        if (audioOn) {
+                            commonFunctions.playAudioToggleSound()
+                        }
                         var element = document.getElementById("history");
                         element.style.display = 'none';
                     }}>BACK</button>
