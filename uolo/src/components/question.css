@@ -1,17 +1,26 @@
 .app {
-background-color: #252d4a;
-position: absolute;
+backdrop-filter: blur(2vh);
+width: 54.8vw;
+height: 75.85vh;
+background-image: url('../../public/images/school-frame1.png');
+background-size: 100% 100%;
+margin: 1vh;
+background-repeat: no-repeat;
+font-family: 'IBM Plex Mono', monospace;
+border-radius: 2vh;
+}
+
+.background-app {
+background-image: url('../../public/images/question-background.webp');
 width: 55.8vw;
 height: 76.85vh;
-color: black;
-border-radius: 1.44vh;
-display: flex;
-flex-direction: column;
-padding-bottom: 1%;
-background-image: url('../../public/images/school-frame.png');
-background-size: 100% 100%;
 background-repeat: no-repeat;
-font-family: 'IBM Plex Mono', monospace;;
+background-size: cover;
+position: absolute;
+flex-direction: column;
+color: black;
+display: flex;
+border-radius: 2vh;
 }
 
 /* QUESTION/TIMER/LEFT SECTION */

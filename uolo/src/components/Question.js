@@ -9,7 +9,7 @@ import Timer from './Timer';
 let correctAnswer = 0;
 let currentQuestion = 1;
 let numberOfRetries = 0;
-const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes, numberOfChances, toggleShowMessageBoxCallback, name}) => {
+const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes, numberOfChances, toggleShowMessageBoxCallback, name, setShowHistoryCallback}) => {
     options = options.slice(0, 3);
     options.push(answer);
     options.sort();
@@ -135,23 +135,25 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
     }
 
     return (
-        <div className='app'>
-            <div className='question-section'>
-                <div className='question-count'>
-                    <div className='question-number'>
-                        <span>Question {currentQuestion}</span>/{numberOfQuestion}
+        <div className='background-app'>
+            <div className='app'>
+                <div className='question-section'>
+                    <div className='question-count'>
+                        <div className='question-number'>
+                            <span>Question {currentQuestion}</span>/{numberOfQuestion}
+                        </div>
+                        <div className='timer'> <Timer setNextQuestion={setNextQuestion} answerClicked={answerClicked} question={question} audioOn={audioOn}/> </div>
                     </div>
-                    <div className='timer'> <Timer setNextQuestion={setNextQuestion} answerClicked={answerClicked} question={question} audioOn={audioOn}/> </div>
+                    <div className='question-text'>{question}</div>
                 </div>
-                <div className='question-text'>{question}</div>
+                <div className='answer-section'>
+                    {options.map((answerOption, index) => (
+                        <button key={index} disabled={buttondisabled} className={selectedAnswer === answerOption ? styleButton : answerSelected ? answerOption === answer ? 'game-button green' : 'game-button' : 'game-button'} onClick = {() => answerClick(answerOption)}>{answerOption}</button>
+                    ))}
+                </div>
+                { audioOn ? <TextToSpeech question={question}/> : null}
+                {/* <SpeakToAnswer answerClick={answerClick}/> */}
             </div>
-            <div className='answer-section'>
-                {options.map((answerOption, index) => (
-                    <button key={index} disabled={buttondisabled} className={selectedAnswer === answerOption ? styleButton : answerSelected ? answerOption === answer ? 'game-button green' : 'game-button' : 'game-button'} onClick = {() => answerClick(answerOption)}>{answerOption}</button>
-                ))}
-            </div>
-            { audioOn ? <TextToSpeech question={question}/> : null}
-            {/* <SpeakToAnswer answerClick={answerClick}/> */}
         </div>
     );
 }
