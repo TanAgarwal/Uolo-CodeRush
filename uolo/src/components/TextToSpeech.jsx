@@ -2,18 +2,12 @@ import { useSpeechSynthesis } from 'react-speech-kit';
 import { useEffect } from 'react';
 
 const TextToSpeech = ({question}) => {
-  const {speak} = useSpeechSynthesis();
-
-  async function speakQuestion()
-  {
-      await speak({text:"question"});
-  }
-  
+    const {speak} =  useSpeechSynthesis();
   useEffect(() => {
       console.log(question);
-      speakQuestion();
-  }, [question]);
-
+      speak({text:question});
+  },[question])
+  
 }
 
 export default TextToSpeech;

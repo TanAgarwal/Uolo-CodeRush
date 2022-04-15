@@ -54,6 +54,7 @@ function App () {
   const [win, setWin] = useState(false);
   const [name, setName] = useState('');
   const [showHistory, setShowHistory] = useState(false);
+  const [muteButton, setMuteButton] = useState(true);
   
   async function fetchQuestions(category) {
     await fetch(`https://opentdb.com/api.php?amount=10&${category}=9&difficulty=easy&type=multiple&encode=url3986`)
@@ -93,6 +94,7 @@ function App () {
     askQuestionCtx.askNewQuestion(numberOfQuestions);
     diceCtx.setNewDiceNumber(numberOfQuestions);
     setShowDice(false);
+    setMuteButton(false);
   }
 
   /**************** UI RENDERING FUNCTIONS ****************/
@@ -146,6 +148,7 @@ function App () {
             toggleShowMessageBoxCallback = {(val) => toggleShowMessageBox(val)}
             name = {name}
             win = {win}
+            setMuteButton = {(val) => setMuteButton(val)}
             />
       );
     }
@@ -257,7 +260,7 @@ function App () {
   /**************** LOGICAL FUNCTIONS ****************/
 
   const toggleAudio = () =>{
-    if(!gameOver && !win){
+    if(!gameOver && !win && muteButton){
     commonFunctions.playAudioToggleSound();
     audioOn ? setAudioOn(false) : setAudioOn(true)
     }

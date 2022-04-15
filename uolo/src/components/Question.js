@@ -9,7 +9,7 @@ import Timer from './Timer';
 let correctAnswer = 0;
 let currentQuestion = 1;
 let numberOfRetries = 0;
-const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes, numberOfChances, toggleShowMessageBoxCallback, name, win}) => {
+const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes, numberOfChances, toggleShowMessageBoxCallback, name, win, setMuteButton}) => {
     options = options.slice(0, 3);
     options.push(answer);
     options.sort();
@@ -106,6 +106,7 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                     }
                     currentQuestion = 0;
                     setDiceCallback(true);
+                    setMuteButton(true);
                 }
                 setAnswerClicked(false);
                 setAnswerSelected(false);
@@ -153,7 +154,7 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                         <button key={index} disabled={buttondisabled} className={selectedAnswer === answerOption ? styleButton : answerSelected ? answerOption === answer ? 'game-button green' : 'game-button' : 'game-button'} onClick = {() => answerClick(answerOption)}>{answerOption}</button>
                     ))}
                 </div>
-                { audioOn ? <TextToSpeech question={question}/> : null}
+                <TextToSpeech question={question} audioOn={audioOn}/>
                 {/* <SpeakToAnswer answerClick={answerClick}/> */}
             </div>
         </div>

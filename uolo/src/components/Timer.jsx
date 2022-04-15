@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import commonFunctions from '../CommonFunctions';
+import AskQuestionContext from '../store/ask-question';
 
 const Timer = ({setNextQuestion, answerClicked, question, audioOn}) => {
     const [timer, setTimer] = useState(10);
+    const askQuestionCtx = useContext(AskQuestionContext);
 
     useEffect(() => {
         if(timer === 0)
@@ -11,7 +13,10 @@ const Timer = ({setNextQuestion, answerClicked, question, audioOn}) => {
             console.log("came");
             commonFunctions.playTimeUpSound();
             }
-            return setNextQuestion(true);
+            if(askQuestionCtx.question - 1 > 0){
+                console.log("coming here");
+                return setNextQuestion(true);
+            }
         }
         const interval = setInterval(()=>{
             setTimer((prev) => prev-1);
