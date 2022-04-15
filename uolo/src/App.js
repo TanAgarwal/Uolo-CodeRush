@@ -2,7 +2,6 @@ import './App.css';
 import {useContext, useEffect, useState} from 'react';
 import PawnContext from './store/pawn-context';
 import Col from "./components/Col";
-import AppControllerFunctions from './controller/app-controller';
 import AskQuestionContext from './store/ask-question';
 import DiceContext from './store/dice';
 import commonFunctions from './CommonFunctions';
@@ -11,7 +10,10 @@ import GameOver from './components/GameOver';
 import Rules from './components/rulesComponent';
 import Victory from './components/Victory';
 import History from './components/History';
+import Question from "./components/Question";
 
+let numberOfQuestions;
+let numberOfChances = 0;
 let mainQuestionBag = [];
 const diceArray = [
   '/images/dice/1.jpg', 
@@ -39,7 +41,7 @@ const wormholes = {
   99: 46
 }
 
-const questionCategory = [9, 27, 19, 18, 22, 10, 17]
+const questionCategory = [9, 15, 11, 22, 12, 23]
 
 function App () {
   const pawnCtx = useContext(PawnContext);
@@ -52,36 +54,45 @@ function App () {
   const [win, setWin] = useState(false);
   const [name, setName] = useState('');
   const [showHistory, setShowHistory] = useState(false);
-
+  
   async function fetchQuestions(category) {
-    await fetch(`https://opentdb.com/api.php?amount=50&category=${category}&difficulty=easy&type=multiple`)
+    await fetch(`https://opentdb.com/api.php?amount=10&${category}=9&difficulty=easy&type=multiple&encode=url3986`)
       .then(response => response.json())
         .then(data => {
           const questionArray = data.results.map(function(question) {
             return {
-              question: question.question, 
-              answer: question.correct_answer,
-              options: question.incorrect_answers
+              question: decodeURIComponent(question.question), 
+              answer: decodeURIComponent(question.correct_answer),
+              options: (decodeURIComponent(question.incorrect_answers)).split(",")
             }
           })
           mainQuestionBag = questionArray;
-          mainQuestionBag = mainQuestionBag.filter(question => !question.question.includes(';') && !question.answer.includes(';'));
         })
-      setShowDice(true);
   }
 
   useEffect(() => {
     commonFunctions.playGameStartSound();
-    pawnCtx.setNewPawnPosition(1, pawnCtx.index); 
-    fetchQuestions(9);
+    pawnCtx.setNewPawnPosition(1, pawnCtx.index);
+    setShowDice(true);
   }, []);
   
-  if (mainQuestionBag.length <= 6) {
-    async function getQuestion () {
-      await fetchQuestions(questionCategory[0]);
+  useEffect(() => {
+    if (mainQuestionBag.length <= 6) {
+      fetchQuestions(questionCategory[0]);
+      questionCategory.shift();
     }
-    getQuestion();
-    questionCategory.shift();
+  }, [mainQuestionBag.length <= 6 && mainQuestionBag.length != 0]);
+
+  const rollDice = () => {
+    if(audioOn){
+      commonFunctions.playDiceThrowSound();
+    }
+    numberOfChances = numberOfChances + 1;
+    const max = 6, min = 1;
+    numberOfQuestions = Math.floor(Math.random() * (max - min + 1) + min);
+    askQuestionCtx.askNewQuestion(numberOfQuestions);
+    diceCtx.setNewDiceNumber(numberOfQuestions);
+    setShowDice(false);
   }
 
   /**************** UI RENDERING FUNCTIONS ****************/
@@ -90,25 +101,25 @@ function App () {
     if (showDice) {
       if (diceCtx.number === 7) {
         return (
-          <input alt = "N And Dice" className = 'dice-with-letter-n' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} 
-            onClick = {() => AppControllerFunctions.rollDice(
-              (val) => askQuestionCtx.askNewQuestion(val), 
-              (val) => setShowDice(val),
-              (val) => diceCtx.setNewDiceNumber(val),
-              audioOn)}
-              disabled = {gameOver || win}
-               />
+          <input 
+            alt = "N And Dice" 
+            className = 'dice-with-letter-n' 
+            type = 'image' 
+            src = {`${diceArray[diceCtx.number - 1]}`} 
+            onClick = {rollDice}
+            disabled = {gameOver || win}
+          />
         )
       }
       return (
-        <input alt = "Dice" className = 'dice' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} 
-          onClick = {() => AppControllerFunctions.rollDice(
-            (val) => askQuestionCtx.askNewQuestion(val), 
-            (val) => setShowDice(val),
-            (val) => diceCtx.setNewDiceNumber(val),
-            audioOn)}
-            disabled = {gameOver || win}
-             />
+        <input 
+          alt = "Dice" 
+          className = 'dice' 
+          type = 'image' 
+          src = {`${diceArray[diceCtx.number - 1]}`} 
+          onClick = {rollDice}
+          disabled = {gameOver || win}
+        />
       );
     }
     return <input alt = "Dice" className = 'dice' type = 'image' src = {`${diceArray[diceCtx.number - 1]}`} />;
@@ -119,19 +130,23 @@ function App () {
   }
 
   const renderQuestion = () => {
-    console.log("came to app.js");
     if (askQuestionCtx.question !== 0) {
+      let questionBag = mainQuestionBag.splice(0, 1)
       return (
-        AppControllerFunctions.askQuestionHandler(
-          mainQuestionBag.splice(0, 1), 
-          (val) => setShowDice(val),
-          (val) => setGameOver(val),
-          audioOn,
-          wormholes,
-          (val) => toggleShowMessageBox(val),
-          name,
-          win
-          )
+        <Question 
+            question = {questionBag[0].question} 
+            options = {questionBag[0].options} 
+            answer = {questionBag[0].answer} 
+            numberOfQuestion = {numberOfQuestions}
+            setDiceCallback = {(val) => setShowDice(val)}
+            setGameOver = {(val) => setGameOver(val)}
+            audioOn = {audioOn}
+            wormholes = {wormholes}
+            numberOfChances = {numberOfChances}
+            toggleShowMessageBoxCallback = {(val) => toggleShowMessageBox(val)}
+            name = {name}
+            win = {win}
+            />
       );
     }
   }
@@ -167,8 +182,11 @@ function App () {
     return (
       <div onClick = {() => {
         if(!gameOver && !win){
-        var element = document.getElementById("rules");
-        element.style.display = "block";
+          if (audioOn) {
+            commonFunctions.playAudioToggleSound()
+          }
+          var element = document.getElementById("rules");
+          element.style.display = "block";
         }
       }}> 
         <img alt = "Help Button" className = 'help-button' src = '/images/help.png' /> 
@@ -243,17 +261,6 @@ function App () {
     commonFunctions.playAudioToggleSound();
     audioOn ? setAudioOn(false) : setAudioOn(true)
     }
-  }
-
-  const backButton = () => {}
-
-  const showBackButtonMessageBox = () => {
-    toggleShowMessageBox({
-      "Do you really want to go back?" : {
-        "YES" : backButton,
-        "NO" : () => toggleShowMessageBox({})
-      }
-    });
   }
 
   const exit = () => {
