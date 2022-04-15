@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import './question.css'
 import commonFunctions from '../CommonFunctions';
 
-const GameOver = ({ audioOn, toggleShowMessageBox}) =>{
+const GameOver = ({ audioOn, toggleShowMessageBox, setShowHistory}) =>{
 
 useEffect(() => {
     if(audioOn)
@@ -16,9 +16,15 @@ const handleClickReplay = () => {
     {
         commonFunctions.playAudioToggleSound();
     }
-    setTimeout(() => {
-        window.location.reload(true)
-    },2000)
+    window.location.reload(true)
+}
+
+const handleClickScores = () => {
+    if(audioOn)
+    {
+        commonFunctions.playAudioToggleSound();
+    }
+    setShowHistory(true);
 }
 
 const exit = () => {
@@ -50,7 +56,8 @@ return(
             Game Over
         </div>
         <img className='image' src='/images/crying.gif'/>
-        <div className='buttons'>
+        <div className='gameover-buttons'>
+            <button className='game-button scores' onClick={handleClickScores}><i className="fa fa-list"/> Scores</button>
             <button className='game-button retry' onClick={handleClickReplay}><i className="fa fa-repeat"/> Replay</button>
             <button className='game-button exit' onClick={showExitMessageBox}><i className="fa fa-close"/>Exit</button>
         </div>

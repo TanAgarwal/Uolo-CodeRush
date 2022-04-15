@@ -9,7 +9,7 @@ import Timer from './Timer';
 let correctAnswer = 0;
 let currentQuestion = 1;
 let numberOfRetries = 0;
-const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes, numberOfChances, toggleShowMessageBoxCallback, name, setShowHistoryCallback}) => {
+const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes, numberOfChances, toggleShowMessageBoxCallback, name, win}) => {
     options = options.slice(0, 3);
     options.push(answer);
     options.sort();
@@ -65,6 +65,9 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
         }
         pawnCtx.setNewPawnPosition(pawnCtx.index, newPosition, audioOn);
         correctAnswer = 0;
+        if(win){
+            postHistory();
+        }
     }
 
     const handleNoCorrectAnswer = () => {
@@ -73,7 +76,6 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
             showWarningMessage()
         }
         if(numberOfRetries === 1){
-            postHistory();
             setGameOver(true);
         }
     }

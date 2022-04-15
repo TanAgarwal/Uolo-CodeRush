@@ -95,6 +95,7 @@ function App () {
               (val) => setShowDice(val),
               (val) => diceCtx.setNewDiceNumber(val),
               audioOn)}
+              disabled = {gameOver || win}
                />
         )
       }
@@ -105,7 +106,7 @@ function App () {
             (val) => setShowDice(val),
             (val) => diceCtx.setNewDiceNumber(val),
             audioOn)}
-            disabled = {gameOver}
+            disabled = {gameOver || win}
              />
       );
     }
@@ -128,7 +129,7 @@ function App () {
           wormholes,
           (val) => toggleShowMessageBox(val),
           name,
-          (val) => setShowHistory(val)
+          win
           )
       );
     }
@@ -164,8 +165,10 @@ function App () {
   const renderHelpButton = () => {
     return (
       <div onClick = {() => {
+        if(!gameOver && !win){
         var element = document.getElementById("rules");
         element.style.display = "block";
+        }
       }}> 
         <img alt = "Help Button" className = 'help-button' src = '/images/help.png' /> 
       </div>
@@ -195,7 +198,7 @@ function App () {
   const renderGaveOverBox = () => {
     if (gameOver) {
       return (
-        <GameOver audioOn={audioOn} toggleShowMessageBox={toggleShowMessageBox}/>
+        <GameOver audioOn={audioOn} toggleShowMessageBox={toggleShowMessageBox} setShowHistory={setShowHistory}/>
       )
     }
   }
@@ -203,7 +206,7 @@ function App () {
   const renderVictoryBox = () => {
     if (win) {
       return (
-        <Victory audioOn={audioOn} toggleShowMessageBox={toggleShowMessageBox}/>
+        <Victory audioOn={audioOn} toggleShowMessageBox={toggleShowMessageBox} setShowHistory={setShowHistory}/>
       )
     }
   }
@@ -219,11 +222,13 @@ function App () {
   const renderScoreBoardButton = () => {
     return (
       <div onClick = {() => {
-        if (audioOn) {
-          commonFunctions.playAudioToggleSound()
-        }
-        console.log(showHistory);
+        if(!gameOver && !win){
+          if (audioOn) {
+            commonFunctions.playAudioToggleSound()
+          }
+          console.log(showHistory);
         setShowHistory(true);
+        }
       }}> 
         <img alt = "Score Board Button" className = 'score-board-button' src = '/images/history-icon.png' /> 
       </div>
@@ -233,7 +238,7 @@ function App () {
   /**************** LOGICAL FUNCTIONS ****************/
 
   const toggleAudio = () =>{
-    if(!gameOver){
+    if(!gameOver && !win){
     commonFunctions.playAudioToggleSound();
     audioOn ? setAudioOn(false) : setAudioOn(true)
     }
@@ -261,7 +266,7 @@ function App () {
   }
 
   const showExitMessageBox = () => {
-    if(!gameOver){
+    if(!gameOver && !win){
       if(audioOn){
           commonFunctions.playAudioToggleSound();
       }
