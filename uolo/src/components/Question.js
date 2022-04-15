@@ -9,7 +9,7 @@ import Timer from './Timer';
 let correctAnswer = 0;
 let currentQuestion = 1;
 let numberOfRetries = 0;
-const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes, numberOfChances, toggleShowMessageBoxCallback, name, win, setMuteButton}) => {
+const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes, numberOfChances, toggleShowMessageBoxCallback, name, setMuteButton}) => {
     options = options.slice(0, 3);
     options.push(answer);
     options.sort();
@@ -65,9 +65,7 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
         }
         pawnCtx.setNewPawnPosition(pawnCtx.index, newPosition, audioOn);
         correctAnswer = 0;
-        if(win){
-            postHistory();
-        }
+        numberOfRetries = 0;
     }
 
     const handleNoCorrectAnswer = () => {
@@ -78,16 +76,6 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
         if(numberOfRetries === 3){
             setGameOver(true);
         }
-    }
-
-    const postHistory = () =>{
-        fetch(process.env.REACT_APP_UOLO_CODERUSH_API_BASE_URL,{
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({name: name, numberOfChances: numberOfChances})
-        }).then(() => {
-            console.log("entry added");
-        })
     }
 
     useEffect(() => {
@@ -118,7 +106,9 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
 
     const answerClick = (selectedOption) => {
         setSelectedAnswer(selectedOption);
-        setNextQuestion(true);
+        if (pawnCtx.index + correctAnswer < 100) {
+            setNextQuestion(true);
+        }
         if (selectedOption === answer) {
             if(audioOn){
                 commonFunctions.playCorrectAnswerSound();
@@ -154,7 +144,7 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                         <button key={index} disabled={buttondisabled} className={selectedAnswer === answerOption ? styleButton : answerSelected ? answerOption === answer ? 'game-button green' : 'game-button' : 'game-button'} onClick = {() => answerClick(answerOption)}>{answerOption}</button>
                     ))}
                 </div>
-                <TextToSpeech question={question} audioOn={audioOn}/>
+                {/* <TextToSpeech question={question} audioOn={audioOn}/> */}
                 {/* <SpeakToAnswer answerClick={answerClick}/> */}
             </div>
         </div>
