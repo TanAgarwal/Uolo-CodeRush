@@ -74,6 +74,7 @@ img {
 .finish {
   display: flex;
   background-image: url('../../public/images/finish.gif');
+  background-size: cover;
   width: 5vw;
   height: 6.9vh;
   border: 0.17vw solid brown;
