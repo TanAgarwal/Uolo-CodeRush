@@ -153,8 +153,8 @@ function App () {
 
   const renderMuteButton = () => {
     return (
-      <div className='mic' onClick={toggleAudio}>
-          { audioOn ? <img alt = "Mute" src='/images/pngwing.com.png'/> : <img alt = "Unmute" src='/images/mute.png'/>}
+      <div onClick={toggleAudio}>
+          { audioOn ? <img className='mic' alt = "Mute" src='/images/pngwing.com.png'/> : <img className='mic-mute' alt = "Unmute" src='/images/mute.png'/>}
         </div>
     )
   }
@@ -208,13 +208,16 @@ function App () {
 
   const renderScoreBoard = () => {
     return (
-      <History />
+      <History audioOn = {audioOn} />
     )
   }
 
   const renderScoreBoardButton = () => {
     return (
       <div onClick = {() => {
+        if (audioOn) {
+          commonFunctions.playAudioToggleSound()
+        }
         var element = document.getElementById("history");
         element.style.display = "block";
       }}> 
@@ -267,8 +270,7 @@ function App () {
       });
     }
   }
-  if(pawnCtx.index === 100)
-  {
+  if(pawnCtx.index === 100) {
     setWin(true);
   }
   /**************** MAIN RETURN FUNCTION ****************/

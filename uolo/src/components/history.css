@@ -28,7 +28,7 @@ table {
     border-collapse: collapse;
     text-align: center;
     width: 100%;
-	vertical-align: middle;
+    vertical-align: middle;
 }
 
 .caption {
@@ -49,6 +49,13 @@ th, td {
 th {
     font-family: 'Bangers', cursive;
     font-size: 3vh;
+}
+
+.no-data-string {
+  font-family: 'Bubblegum Sans', cursive;
+  margin-top: 2vh;
+  font-size: 4vh;
+  text-align: center;
 }
 
 td {
