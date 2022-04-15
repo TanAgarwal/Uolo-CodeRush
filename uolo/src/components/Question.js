@@ -72,9 +72,20 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
         if (numberOfRetries < 3) {
             showWarningMessage()
         }
-        if(numberOfRetries === 3){
+        if(numberOfRetries === 1){
+            postHistory();
             setGameOver(true);
         }
+    }
+
+    const postHistory = () =>{
+        fetch(process.env.REACT_APP_UOLO_CODERUSH_API_BASE_URL,{
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({name: name, numberOfChances: numberOfChances})
+        }).then(() => {
+            console.log("entry added");
+        })
     }
 
     useEffect(() => {

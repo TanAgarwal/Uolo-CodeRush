@@ -239,7 +239,7 @@ function App () {
 
   const showBackButtonMessageBox = () => {
     toggleShowMessageBox({
-      "Are you really want to go back?" : {
+      "Do you really want to go back?" : {
         "YES" : backButton,
         "NO" : () => toggleShowMessageBox({})
       }
@@ -262,7 +262,7 @@ function App () {
           commonFunctions.playAudioToggleSound();
       }
       toggleShowMessageBox({
-        "Are you really want to exit?" : {
+        "Do you really want to exit?" : {
           "YES" : exit,
           "NO" : () => {toggleShowMessageBox({}) 
           commonFunctions.playAudioToggleSound();}

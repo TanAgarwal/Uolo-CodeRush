@@ -9,7 +9,7 @@ const History = ({audioOn}) => {
             method: 'GET'
         }).then(response => response.json())
           .then(data => {
-            scoreFetch(data.data);
+            scoreFetch(data);
             });
     }, [])
 
