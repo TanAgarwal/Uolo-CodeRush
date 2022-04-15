@@ -71,6 +71,7 @@ function App () {
   }
 
   useEffect(() => {
+    commonFunctions.playGameStartSound();
     pawnCtx.setNewPawnPosition(1, pawnCtx.index); 
     fetchQuestions(9);
   }, []);
