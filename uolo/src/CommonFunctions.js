@@ -37,15 +37,19 @@ const commonFunctions = {
     },
 
     playAudioToggleSound : () => {
-        SoundPlay('/audio/Mouse_Click_Sound_Effect.mp3');
+        SoundPlay('/audio/mouse-click.mp3');
     },
 
     playGameOverSound : () => {
-        SoundPlay('/audio/Game_Over_Sound_Affect.mp3');
+        SoundPlay('/audio/game-over.mp3');
     },
 
     playVictorySound : () => {
-        SoundPlay('/audio/Victory_sound_effect.mp3');
+        SoundPlay('/audio/victory-sound.mp3');
+    },
+
+    playGameStartSound : () => {
+        SoundPlay('/audio/game-start.mp3');
     }
 
 }
