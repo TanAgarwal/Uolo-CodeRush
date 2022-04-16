@@ -3,13 +3,12 @@ import AskQuestionContext from '../store/ask-question';
 import { useContext, useEffect, useState } from 'react';
 import PawnContext from '../store/pawn-context';
 import commonFunctions from '../CommonFunctions';
-import TextToSpeech from './TextToSpeech';
 import Timer from './Timer';
 
 let correctAnswer = 0;
 let currentQuestion = 1;
 let numberOfRetries = 0;
-const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes, numberOfChances, toggleShowMessageBoxCallback, name, setMuteButton}) => {
+const Question = ({question, options, answer, numberOfQuestion, setDiceCallback, setGameOver, audioOn, wormholes, toggleShowMessageBoxCallback, setMuteButton}) => {
     options = options.slice(0, 3);
     options.push(answer);
     options.sort();
@@ -101,8 +100,8 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
                 askQuestionCtx.askNewQuestion(askQuestionCtx.question - 1)
                 currentQuestion += 1;
             },2000);
-        setNextQuestion(false);
-    }}, [nextQuestion]);
+            setNextQuestion(false);
+        }}, [nextQuestion]);
 
     const answerClick = (selectedOption) => {
         setSelectedAnswer(selectedOption);

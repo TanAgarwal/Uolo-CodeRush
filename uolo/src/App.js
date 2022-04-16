@@ -54,8 +54,9 @@ function App () {
   const [win, setWin] = useState(false);
   const [name, setName] = useState('');
   const [showHistory, setShowHistory] = useState(false);
-  const [muteButton, setMuteButton] = useState(true);
-  
+const [muteButton, setMuteButton] = useState(true);
+  const [firstTime, setFirstTime] = useState(true);
+
   async function fetchQuestions(category) {
     await fetch(`https://opentdb.com/api.php?amount=50&category=${category}&difficulty=easy&type=multiple&encode=url3986`)
       .then(response => response.json())
@@ -72,7 +73,6 @@ function App () {
   }
 
   useEffect(() => {
-    commonFunctions.playGameStartSound();
     pawnCtx.setNewPawnPosition(1, pawnCtx.index);
     setShowDice(true);
   }, []);
@@ -86,21 +86,19 @@ function App () {
 
   useEffect(() => {
     //const postHistory = () =>{
-      console.log(numberOfChances);
       if(numberOfChances !== 0){
-      fetch(process.env.REACT_APP_UOLO_CODERUSH_API_BASE_URL,{
-          method: 'POST',
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({name: name, numberOfChances: numberOfChances})
-      }).then(() => {
-          console.log("entry added");
-      })
-    }
+        fetch(process.env.REACT_APP_UOLO_CODERUSH_API_BASE_URL,{
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({name: name, numberOfChances: numberOfChances})
+        }).then(() => {
+            console.log("entry added");
+        })
+      }
   //}
   }, [win]);
 
   if(pawnCtx.index === 100) {
-    console.log(numberOfChances);
     setWin(true);
     pawnCtx.index = 0;
     //postHistory();
@@ -113,6 +111,7 @@ function App () {
     numberOfChances = numberOfChances + 1;
     const max = 6, min = 1;
     numberOfQuestions = Math.floor(Math.random() * (max - min + 1) + min);
+    console.log(`Dice: ${numberOfQuestions}`);
     askQuestionCtx.askNewQuestion(numberOfQuestions);
     diceCtx.setNewDiceNumber(numberOfQuestions);
     setShowDice(false);
@@ -166,9 +165,7 @@ function App () {
             setGameOver = {(val) => setGameOver(val)}
             audioOn = {audioOn}
             wormholes = {wormholes}
-            numberOfChances = {numberOfChances}
             toggleShowMessageBoxCallback = {(val) => toggleShowMessageBox(val)}
-            name = {name}
             setMuteButton = {(val) => setMuteButton(val)}
             />
       );
@@ -181,7 +178,10 @@ function App () {
         <Rules 
           name = {name} 
           setNameCallback = {(val) => setName(val)} 
-          toggleShowMessageBoxCallback = {(val) => toggleShowMessageBox(val)} />
+          toggleShowMessageBoxCallback = {(val) => toggleShowMessageBox(val)}
+          setFirstTimeCallback = {(val) => setFirstTime(val)}
+          firstTime = {firstTime}
+          />
       </div>
     )
   }
@@ -269,8 +269,7 @@ function App () {
           if (audioOn) {
             commonFunctions.playAudioToggleSound()
           }
-          console.log(showHistory);
-        setShowHistory(true);
+          setShowHistory(true);
         }
       }}> 
         <img alt = "Score Board Button" className = 'score-board-button' src = '/images/history-icon.png' /> 

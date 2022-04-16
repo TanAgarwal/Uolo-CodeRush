@@ -1,10 +1,14 @@
 import './rules.css';
 import commonFunctions from '../CommonFunctions';
 
-const Rules = ({name, setNameCallback, toggleShowMessageBoxCallback}) => {
+const Rules = ({name, setNameCallback, toggleShowMessageBoxCallback, setFirstTimeCallback, firstTime}) => {
     const handlePlayButton = () => {
         commonFunctions.playAudioToggleSound();
         if (name !== '') {
+            if (firstTime) {
+                commonFunctions.playGameStartSound();
+                setFirstTimeCallback(false);
+            }
             var element = document.getElementById("rules");
             element.style.display = 'none';
         } else {
