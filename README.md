@@ -35,7 +35,7 @@ To get a local copy up and running follow these simple example steps.
 
 * npm
   ```sh
-  npm install npm@latest -g
+  npm install -g npm@6.14.13
   ```
 
 ### Installation
