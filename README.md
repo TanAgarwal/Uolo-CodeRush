@@ -1,70 +1,68 @@
-# Uolo-CodeRush
+<div id="top"></div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br />
+<div align="center">
+  <a href="https://github.com/TanAgarwal/Uolo-CodeRush">
+    <img src="./images/logo.png" alt="Logo" width="390" height="80">
+  </a>
 
-## Available Scripts
+  <p align="center">
+    Let's test how well my GK and luck is!
+    <br />
+    <br />
+  </p>
+</div>
 
-In the project directory, you can run:
+## About The Project
 
-### `npm start`
+Have you ever wondered that how important and crucial your General Knowledge and luck can be? In this game not only your GK but your luck will also be tested. This is a single player 2D digital board game in which there will be certain steps from 1 to 100. And initially you will start from 1 and have to reach 100. But your luck decides what number will turn up on dice and your GK will decide how many steps you will actually take forward. Suppose your dice shows 6, then you will be asked 6 questions, and number of questions you have answered correctly will be the number of steps you will take forward. But if three consecutive times after throwing the dice, you are unable to take even a single step, then you will loose. And each question will be a timed question. It contains certain wormholes on few steps. So, if you dare to step on them, you will end on different step of the game, it can be above your current position and can be below your current position.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### Built With
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Major teach stacks that arae used for this project are:
 
-### `npm run build`
+* [React.js](https://reactjs.org/)
+* [Node.js](https://nodejs.org/en/about/)
+* [MongoDB](https://www.mongodb.com/docs/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To get a local copy up and running follow these simple example steps.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
 
-### `npm run eject`
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Installation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/TanAgarwal/Uolo-CodeRush
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+## Contributing
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/NewAmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some New AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/NewAmazingFeature`)
+5. Open a Pull Request
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Contact
 
-## Learn More
+Tanmay Agarwal - (https://www.linkedin.com/in/tanmay-agarwal-261b4919a/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Khushboo Gour - (https://www.linkedin.com/in/khushboo-gour-3a8588192/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Project Link: [https://github.com/TanAgarwal/Uolo-CodeRush](https://github.com/TanAgarwal/Uolo-CodeRush)
+<p align="right">(<a href="#top">back to top</a>)</p>
