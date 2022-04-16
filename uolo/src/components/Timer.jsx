@@ -13,10 +13,9 @@ const Timer = ({setNextQuestion, answerClicked, question, audioOn}) => {
                 commonFunctions.playTimeUpSound();
                 return setNextQuestion(true);
             }
-            // if(askQuestionCtx.question - 1 > 0){
-            //     console.log("coming here");
-                
-            //}
+            if((!answerClicked)){
+            return setNextQuestion(true);
+            }
         }
         let interval;
         if (timer > 0) {
