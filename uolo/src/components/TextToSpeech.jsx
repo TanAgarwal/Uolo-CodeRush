@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 const TextToSpeech = ({question}) => {
     const {speak} =  useSpeechSynthesis();
   useEffect(() => {
-      console.log(question);
+      // console.log(question);
       speak({text:question});
   },[question])
   

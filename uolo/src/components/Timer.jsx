@@ -7,20 +7,23 @@ const Timer = ({setNextQuestion, answerClicked, question, audioOn}) => {
     const askQuestionCtx = useContext(AskQuestionContext);
 
     useEffect(() => {
-        if(timer === 0)
-        {
+        if(timer === 0) {
             if(audioOn && (!answerClicked)){
-            console.log("came");
-            commonFunctions.playTimeUpSound();
+                console.log("came");
+                commonFunctions.playTimeUpSound();
+                return setNextQuestion(true);
             }
             // if(askQuestionCtx.question - 1 > 0){
             //     console.log("coming here");
-                return setNextQuestion(true);
+                
             //}
         }
-        const interval = setInterval(()=>{
-            setTimer((prev) => prev-1);
-        }, 1000);
+        let interval;
+        if (timer > 0) {
+            interval = setInterval(()=>{
+                setTimer((prev) => prev-1);
+            }, 1000);
+        }
         return () => clearInterval(interval);
     }, [setNextQuestion, timer]);
 

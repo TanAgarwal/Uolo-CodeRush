@@ -3,7 +3,7 @@ import commonFunctions from '../CommonFunctions';
 import '../pawn.css';
 
 const PawnContext = createContext({ 
-    index: 97,
+    index: 1,
     setNewPawnPosition: (oldIndex, newIndex, audioOn) => {}
 }); 
 
