@@ -63,8 +63,10 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
             }
         }
         pawnCtx.setNewPawnPosition(pawnCtx.index, newPosition, audioOn);
+        if(correctAnswer > 0){
+            numberOfRetries = 0;
+        }
         correctAnswer = 0;
-        numberOfRetries = 0;
     }
 
     const handleNoCorrectAnswer = () => {
@@ -72,6 +74,7 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
         if (numberOfRetries < 3) {
             showWarningMessage()
         }
+        console.log(numberOfRetries+ "retries");
         if(numberOfRetries === 3){
             setGameOver(true);
         }
@@ -105,9 +108,7 @@ const Question = ({question, options, answer, numberOfQuestion, setDiceCallback,
 
     const answerClick = (selectedOption) => {
         setSelectedAnswer(selectedOption);
-        if (pawnCtx.index + correctAnswer < 100) {
-            setNextQuestion(true);
-        }
+       setNextQuestion(true);
         if (selectedOption === answer) {
             if(audioOn){
                 commonFunctions.playCorrectAnswerSound();
