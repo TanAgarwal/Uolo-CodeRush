@@ -1,4 +1,4 @@
-import './question.css'
+import '../styles/question.css'
 import AskQuestionContext from '../store/ask-question';
 import { useContext, useEffect, useState } from 'react';
 import PawnContext from '../store/pawn-context';

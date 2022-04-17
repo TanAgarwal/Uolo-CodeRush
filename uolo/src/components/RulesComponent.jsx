@@ -1,4 +1,4 @@
-import './rules.css';
+import '../styles/rules.css';
 import commonFunctions from '../CommonFunctions';
 
 const Rules = ({name, setNameCallback, toggleShowMessageBoxCallback, setFirstTimeCallback, firstTime}) => {

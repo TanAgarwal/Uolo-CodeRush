@@ -1,5 +1,5 @@
 .pawn-right {
-    background-image: url('../public/images/pawn/pawn-right.png');
+    background-image: url('../../public/images/pawn/pawn-right.png');
     width: 4vw;
     height: 6.9vh;
     background-repeat: no-repeat;
@@ -7,7 +7,7 @@
   }
   
   .pawn-left {
-    background-image: url('../public/images/pawn/pawn-left.png');
+    background-image: url('../../public/images/pawn/pawn-left.png');
     width: 4vw;
     height: 6.9vh;
     background-repeat: no-repeat;
@@ -15,7 +15,7 @@
   }
   
   .pawn1-right {
-    background-image: url('../public/images/pawn/pawn1-right.png');
+    background-image: url('../../public/images/pawn/pawn1-right.png');
     width: 4vw;
     height: 6.9vh;
     background-repeat: no-repeat;
@@ -23,7 +23,7 @@
   }
   
   .pawn1-left {
-    background-image: url('../public/images/pawn/pawn1-left.png');
+    background-image: url('../../public/images/pawn/pawn1-left.png');
     width: 4vw;
     height: 6.9vh;
     background-repeat: no-repeat;
@@ -31,7 +31,7 @@
   }
 
   .pawn2-right {
-    background-image: url('../public/images/pawn/pawn2-right.png');
+    background-image: url('../../public/images/pawn/pawn2-right.png');
     width: 4vw;
     height: 6.9vh;
     background-repeat: no-repeat;
@@ -39,7 +39,7 @@
   }
   
   .pawn2-left {
-    background-image: url('../public/images/pawn/pawn2-left.png');
+    background-image: url('../../public/images/pawn/pawn2-left.png');
     width: 4vw;
     height: 6.9vh;
     background-repeat: no-repeat;
@@ -47,7 +47,7 @@
   }
 
   .pawn3-right {
-    background-image: url('../public/images/pawn/pawn3-right.png');
+    background-image: url('../../public/images/pawn/pawn3-right.png');
     width: 4vw;
     height: 6.9vh;
     background-repeat: no-repeat;
@@ -55,7 +55,7 @@
   }
   
   .pawn3-left {
-    background-image: url('../public/images/pawn/pawn3-left.png');
+    background-image: url('../../public/images/pawn/pawn3-left.png');
     width: 4vw;
     height: 6.9vh;
     background-repeat: no-repeat;
@@ -63,7 +63,7 @@
   }
 
   .pawn4-right {
-    background-image: url('../public/images/pawn/pawn4-right.png');
+    background-image: url('../../public/images/pawn/pawn4-right.png');
     width: 4vw;
     height: 6.9vh;
     background-repeat: no-repeat;
@@ -71,7 +71,7 @@
   }
   
   .pawn4-left {
-    background-image: url('../public/images/pawn/pawn4-left.png');
+    background-image: url('../../public/images/pawn/pawn4-left.png');
     width: 4vw;
     height: 6.9vh;
     background-repeat: no-repeat;

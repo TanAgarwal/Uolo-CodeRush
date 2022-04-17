@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './history.css';
+import '../styles/history.css';
 import commonFunctions from '../CommonFunctions';
 
 const History = ({audioOn, setShowHistoryCallback}) => {

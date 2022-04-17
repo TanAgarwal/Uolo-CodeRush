@@ -1,4 +1,4 @@
-import './cell.css';
+import '../styles/cell.css';
 
 const Cell = ({index, wormholes}) => {
     if (index in wormholes) {

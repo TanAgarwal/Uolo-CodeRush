@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import './victory.css'
+import '../styles/victory.css'
 import commonFunctions from '../CommonFunctions';
 
 const Victory = ({ audioOn, toggleShowMessageBox, setShowHistory }) =>{
