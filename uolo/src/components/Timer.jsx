@@ -8,7 +8,6 @@ const Timer = ({setNextQuestion, answerClicked, question, audioOn}) => {
     useEffect(() => {
         if(timer === 0) {
             if(audioOn && (!answerClicked)){
-                console.log("came");
                 commonFunctions.playTimeUpSound();
                 return setNextQuestion(true);
             }
