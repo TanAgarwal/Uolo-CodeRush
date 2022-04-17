@@ -91,9 +91,7 @@ const [muteButton, setMuteButton] = useState(true);
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({name: name, numberOfChances: numberOfChances})
-        }).then(() => {
-            console.log("entry added");
-        })
+        }).then(() => {})
       }
   //}
   }, [win]);
@@ -111,7 +109,6 @@ const [muteButton, setMuteButton] = useState(true);
     numberOfChances = numberOfChances + 1;
     const max = 6, min = 1;
     numberOfQuestions = Math.floor(Math.random() * (max - min + 1) + min);
-    console.log(`Dice: ${numberOfQuestions}`);
     askQuestionCtx.askNewQuestion(numberOfQuestions);
     diceCtx.setNewDiceNumber(numberOfQuestions);
     setShowDice(false);
