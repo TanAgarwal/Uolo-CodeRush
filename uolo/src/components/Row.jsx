@@ -1,5 +1,5 @@
 import Cell from "./Cell"
-import './Component.css';
+import '../styles/component.css';
 
 const createRow = (index, wormholes) => {
     return (

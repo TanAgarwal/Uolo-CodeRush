@@ -4,7 +4,6 @@ import AskQuestionContext from '../store/ask-question';
 
 const Timer = ({setNextQuestion, answerClicked, question, audioOn}) => {
     const [timer, setTimer] = useState(10);
-    const askQuestionCtx = useContext(AskQuestionContext);
 
     useEffect(() => {
         if(timer === 0) {

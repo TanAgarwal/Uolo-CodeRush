@@ -1,6 +1,6 @@
 import {createContext, useState} from 'react';
 import commonFunctions from '../CommonFunctions';
-import '../pawn.css';
+import '../styles/pawn.css';
 
 const PawnContext = createContext({ 
     index: 1,

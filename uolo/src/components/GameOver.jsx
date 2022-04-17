@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import './question.css'
+import '../styles/question.css'
 import commonFunctions from '../CommonFunctions';
 
 const GameOver = ({ audioOn, toggleShowMessageBox, setShowHistory}) =>{

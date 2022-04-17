@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/app.css';
 import {useContext, useEffect, useState} from 'react';
 import PawnContext from './store/pawn-context';
 import Col from "./components/Col";
@@ -7,7 +7,7 @@ import DiceContext from './store/dice';
 import commonFunctions from './CommonFunctions';
 import MessageBox from './components/MessageBoxComponent';
 import GameOver from './components/GameOver';
-import Rules from './components/rulesComponent';
+import Rules from './components/RulesComponent';
 import Victory from './components/Victory';
 import History from './components/History';
 import Question from "./components/Question";
@@ -197,7 +197,7 @@ const [muteButton, setMuteButton] = useState(true);
   const renderMuteButton = () => {
     return (
       <div onClick={toggleAudio}>
-          { audioOn ? <img className='mic' alt = "Mute" src='/images/pngwing.com.png'/> : <img className='mic-mute' alt = "Unmute" src='/images/mute.png'/>}
+          { audioOn ? <img className='mic' alt = "Mute" src='/images/unmute.png'/> : <img className='mic-mute' alt = "Unmute" src='/images/mute.png'/>}
         </div>
     )
   }
