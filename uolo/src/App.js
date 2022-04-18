@@ -178,6 +178,7 @@ const [muteButton, setMuteButton] = useState(true);
           toggleShowMessageBoxCallback = {(val) => toggleShowMessageBox(val)}
           setFirstTimeCallback = {(val) => setFirstTime(val)}
           firstTime = {firstTime}
+          audioOn = {audioOn}
           />
       </div>
     )
@@ -302,7 +303,9 @@ const [muteButton, setMuteButton] = useState(true);
         "Do you really want to exit?" : {
           "YES" : exit,
           "NO" : () => {toggleShowMessageBox({}) 
-          commonFunctions.playAudioToggleSound();}
+          if(audioOn){
+            commonFunctions.playAudioToggleSound();
+          }}
         }
       });
     }

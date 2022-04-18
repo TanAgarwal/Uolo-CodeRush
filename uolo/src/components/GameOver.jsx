@@ -45,7 +45,9 @@ const showExitMessageBox = () => {
         "Do you really want to exit?" : {
           "YES" : exit,
           "NO" : () => {toggleShowMessageBox({}) 
-          commonFunctions.playAudioToggleSound();}
+          if(audioOn){
+            commonFunctions.playAudioToggleSound();
+          }}
         }
       });
   }

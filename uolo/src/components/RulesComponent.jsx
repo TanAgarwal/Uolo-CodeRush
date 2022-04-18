@@ -1,9 +1,11 @@
 import '../styles/rules.css';
 import commonFunctions from '../CommonFunctions';
 
-const Rules = ({name, setNameCallback, toggleShowMessageBoxCallback, setFirstTimeCallback, firstTime}) => {
+const Rules = ({name, setNameCallback, toggleShowMessageBoxCallback, setFirstTimeCallback, firstTime, audioOn}) => {
     const handlePlayButton = () => {
-        commonFunctions.playAudioToggleSound();
+        if(audioOn){
+            commonFunctions.playAudioToggleSound();
+        }
         if (name !== '') {
             if (firstTime) {
                 commonFunctions.playGameStartSound();
@@ -17,7 +19,9 @@ const Rules = ({name, setNameCallback, toggleShowMessageBoxCallback, setFirstTim
                 "Please Enter Your Name": {
                     "OKAY": () => {
                         document.getElementById("rules-play-button").disabled = false;
-                        commonFunctions.playAudioToggleSound();
+                        if(audioOn){
+                            commonFunctions.playAudioToggleSound();
+                        }
                         toggleShowMessageBoxCallback({})
                     }
                 }    
