@@ -65,4 +65,6 @@ Tanmay Agarwal - (https://www.linkedin.com/in/tanmay-agarwal-261b4919a/)
 Khushboo Gour - (https://www.linkedin.com/in/khushboo-gour-3a8588192/)
 
 Project Link: [https://github.com/TanAgarwal/Uolo-CodeRush](https://github.com/TanAgarwal/Uolo-CodeRush)
+
+Project Demo: <a href="https://625c38d2854d197195909597--voluble-gaufre-37ae90.netlify.app/">Click Here</a>
 <p align="right">(<a href="#top">back to top</a>)</p>
