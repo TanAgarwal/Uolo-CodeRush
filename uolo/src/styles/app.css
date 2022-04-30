@@ -4,15 +4,15 @@
 }
 
 .grid {
-  padding: 0.5vh;
+  padding: 0.5vmax;
 }
 
 .App-header {
-  min-height: 100vh;
+  min-height: 100vmin;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: calc(1vh + 2vmin);
+  font-size: calc(1vmin + 2vmin);
   color: white;
   background-image: url('../../public/images/main-background.jpeg');
   background-repeat: no-repeat;
@@ -23,12 +23,12 @@
 .dice {
   display: flex;
   width: 5.5vw;
-  height: 9.5vh;
-  border-radius: 2vh;
+  height: 9.5vmin;
+  border-radius: 2vmin;
   align-items:center;
   margin: auto;
-  margin-top: 1.2vh;
-  margin-right: 3.5vh;
+  margin-top: 1.2vmin;
+  margin-right: 3.5vmin;
   justify-content:center;
 }
 
@@ -47,7 +47,7 @@
 
 .score-board-button {
   width: 5vw;
-  height: 6.9vh;
+  height: 6.9vmin;
   position: absolute;
   left: 12%;
   top: 5%;
@@ -70,10 +70,10 @@
 .swingimage{
   display: flex;
   flex-direction: row;
-  margin-top: 0vh;
+  margin-top: 0vmin;
   text-align: center;
-  margin-bottom: 5vh;
-  margin-top: 1.5vh;
+  margin-bottom: 5vmin;
+  margin-top: 1.5vmin;
   -webkit-transform-origin: 50% 0;
   transform-origin: 50% 0;
   -webkit-animation: swinging 3.5s ease-in-out forwards infinite;
@@ -85,76 +85,76 @@
   letter-spacing: 0.15rem;
   text-transform: uppercase;
   color: #fff;
-  text-shadow: -0.4vh 0.4vh #ef3550,
-                -0.8vh 0.8vh #f48fb1,
-                -1.2vh 1.2vh #7e57c2,
-                -1.6vh 1.6vh #2196f3,
-                -2vh 2vh #26c6da,
-                -2.4vh 2.4vh #43a047,
-                -2.8vh 2.8vh #eeff41,
-                -3.2vh 3.2vh #f9a825,
-                -3.6vh 3.6vh #ff5722;
-  font-size: 8vh;
+  text-shadow: -0.4vmin 0.4vmin #ef3550,
+                -0.8vmin 0.8vmin #f48fb1,
+                -1.2vmin 1.2vmin #7e57c2,
+                -1.6vmin 1.6vmin #2196f3,
+                -2vmin 2vmin #26c6da,
+                -2.4vmin 2.4vmin #43a047,
+                -2.8vmin 2.8vmin #eeff41,
+                -3.2vmin 3.2vmin #f9a825,
+                -3.6vmin 3.6vmin #ff5722;
+  font-size: 8vmin;
 }
 
 .dice-with-letter-n {
   display: flex;
   width: 5.5vw;
-  height: 9.5vh;
-  border-radius: 2vh;
+  height: 9.5vmin;
+  border-radius: 2vmin;
   align-items:center;
   margin: auto;
-  margin-top: 1.2vh;
-  margin-right: 3.5vh;
+  margin-top: 1.2vmin;
+  margin-right: 3.5vmin;
   justify-content:center;
   animation: shake 1s both infinite;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
-  perspective: 100vh;
+  perspective: 100vmin;
 }
 
 @keyframes shake {
   10%{
-    transform: translate3d(-0.5px, 0, 0);
+    transform: translate3d(-0.5vmin, 0, 0);
   }
 
   15% {
-    transform: translate3d(0.1vh, 0, 0);
+    transform: translate3d(0.1vmin, 0, 0);
   }
   
   20% {
-    transform: translate3d(-0.2vh, 0, 0);
+    transform: translate3d(-0.2vmin, 0, 0);
   }
 
   25% {
-    transform: translate3d(0.2vh, 0, 0);
+    transform: translate3d(0.2vmin, 0, 0);
   }
 
   30%, 35%, 40%, 45%, 50%, 55%, 60%, 65%, 70% {
-    transform: translate3d(0vh, 0, 0);
+    transform: translate3d(0vmin, 0, 0);
   }
 
   75% {
-    transform: translate3d(-0.5px, 0, 0);
+    transform: translate3d(-0.5vmin, 0, 0);
   }
 
   80% {
-    transform: translate3d(0.1vh, 0, 0);
+    transform: translate3d(0.1vmin, 0, 0);
   }
 
   85% {
-    transform: translate3d(-0.2vh, 0, 0);
+    transform: translate3d(-0.2vmin, 0, 0);
   }
 
   90% {
-    transform: translate3d(0.4vh, 0, 0);
+    transform: translate3d(0.4vmin, 0, 0);
   }
   
 }
 
 .mic{
   width: 5vw;
-  height: 9vh;
+  height: 9vmin;
   position: absolute;
   left: 5%;
   top: 4%;
@@ -162,7 +162,7 @@
 
 .mic-mute {
   width: 5vw;
-  height: 6.9vh;
+  height: 6.9vmin;
   position: absolute;
   left: 5%;
   top: 5%;
@@ -170,7 +170,7 @@
 
 .help-button {
   width: 5vw;
-  height: 6.9vh;
+  height: 6.9vmin;
   position: absolute;
   right: 11%;
   top: 5%;
@@ -178,7 +178,7 @@
 
 .exit-button {
   width: 5vw;
-  height: 6.9vh;
+  height: 6.9vmin;
   position: absolute;
   right: 5%;
   top: 5%;

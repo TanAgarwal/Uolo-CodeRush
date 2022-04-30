@@ -1,29 +1,32 @@
 .rules-container {
   position: absolute;
   z-index: 2;
-  margin: 0vh;
+  margin: 0%;
   top: 0%;
   left: 0%;
+  height: 100%;
+  width: 100%;
 }
 
 .name-input {
-  height: 3vh;
-  width: 10vw;
+  height: 2.3%;
+  width: 8.5%;
   background-color: white;
   border-radius: 2vh;
   font-family: 'Lobster Two', cursive;
-  padding: 1vh;
-  font-size: 2vh;
+  padding: 1%;
+  font-size: 2vmin;
   position: absolute;
-  top: 73%;
+  top: 82.9%;
   left: 50%;
 }
 
 .rules {
   background-image: url('../../public/images/rules-frame.jpg');
   background-repeat: no-repeat;
-  height: 120.5vh;
-  width: 100vw;
+  min-height: 100%;
+  min-width: 100%;
+  background-position:center;
   background-size: cover;
 }
 
@@ -33,12 +36,12 @@
   font-family: 'Lobster Two', cursive;
   left: 50%;
   color: red;
-  font-size: 7vh;
+  font-size: 3vmin;
 }
 
 .rules-img {
-  height: 3vh;
-  width: 2.1vw;
+  height: 3vmin;
+  width: 2.1vmin;
 }
 
 .rules-text {
@@ -49,63 +52,65 @@
   border-radius: 1vh;
   padding-top: 1vh;
   padding-bottom: 1vh;
-  width: 98vh;
+  width: 48.5%;
+  max-height: 60%;
+  overflow: scroll;
   top: 17%;
   left: 40%;
-  font-size: 3vh;
+  font-size: 3vmin;
 }
 
 .play-button {
   border: solid 0.2vh rgba(0,0,0,0.15);
   border-radius: 1vh;
   position: absolute;
-  top: 73%;
+  top: 82.9%;
   left: 63%;
   background-color: chocolate;
   font-family: 'Special Elite', cursive;
-  box-shadow: 0.5vh 1vh brown;
-  font-size: 5.5vh;
-  padding: 1vh;
+  box-shadow: 0.5vmin 1vmin brown;
+  font-size: 3.5vmin;
+  padding: 1vmin;
 }
 
 .play-button:hover {
   border: solid 0.2vh rgba(0,0,0,0.15);
   border-radius: 1vh;
   position: absolute;
-  top: 73%;
+  top: 82.9%;
   left: 63%;
   background-color: chocolate;
   font-family: 'Special Elite', cursive;
-  box-shadow: 0.5vh 1vh brown;
-  font-size: 5.5vh;
-  padding: 1vh;
+  box-shadow: 0.5vmin 1vmin brown;
+  font-size: 3.5vmin;
+  padding: 1vmin;
   animation: shake 1s both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
-  perspective: 100vh;
+  perspective: 100vmin;
 }
   
 @keyframes shake {
   10%, 90% {
-    transform: translate3d(-0.1vh, 0, 0);
+    transform: translate3d(-0.1vmin, 0, 0);
   }
   
   20%, 80% {
-    transform: translate3d(0.2vh, 0, 0);
+    transform: translate3d(0.2vmin, 0, 0);
   }
 
   30%, 50%, 70% {
-    transform: translate3d(-0.4vh, 0, 0);
+    transform: translate3d(-0.4vmin, 0, 0);
   }
 
   40%, 60% {
-    transform: translate3d(0.4vh, 0, 0);
+    transform: translate3d(0.4vmin, 0, 0);
   }
 }
 
 .rotate-rules-img {
-  width: 3vh;
-  height: 1.7vw;
+  width: 3%;
+  height: 1.7%;
   overflow: hidden;
   animation: rotationImg 2s infinite linear;
 }
