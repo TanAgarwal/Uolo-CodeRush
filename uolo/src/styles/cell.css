@@ -51,13 +51,13 @@ img {
 }
 
 .wormhole {
-  width: 4.1vw;
-  height: 7.1vh;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .rotate {
-  width: 4.1vw;
-  height: 7.1vh;
+  max-width: 81%;
+  max-height: 100%;
   overflow: hidden;
   animation: rotation 2s infinite linear;
 }
